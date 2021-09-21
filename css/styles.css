@@ -1,0 +1,135 @@
+/* body {
+  color: white;
+  font-family: 'Open sans', sans-serif;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://cutewallpaper.org/22/animes-crossover-4k-wallpapers/46344591.jpg);
+  background-position: left 60% top 5%;
+} */
+
+body {
+  color: white;
+  font-family: 'Open sans', sans-serif;
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(https://cutewallpaper.org/22/animes-crossover-4k-wallpapers/46344591.jpg);
+  background-position: left 60% top 5%;
+}
+
+img {
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5, {
+  font-family: 'Work Sans', sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+i {
+  font-size: xx-large;
+}
+
+input {
+  outline: none;
+}
+
+
+/* .overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+} */
+
+.navbar,
+.header {
+  background-color: #233f57;
+  font-family: 'Racing Sans One', cursive;
+}
+
+.align-text-center {
+  text-align: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.search {
+  margin-top: 6rem;
+}
+
+.searchbar {
+  width: 20rem;
+  height: 2rem;
+  border-right: none;
+  border: none;
+  box-shadow: 0 11px 20px -3px #000;
+}
+
+.search-btn {
+  color: white;
+  background-color: #4c5b69;
+  border: none;
+  padding: 0 0.8rem;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.navbar {
+  position: fixed;
+  height: 70px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.navbar-top {
+  display: none;
+  justify-content: end;
+}
+
+.search-btn > i {
+  font-size: large;
+}
+
+.padding-lr-1 {
+  padding: 0 1rem;
+}
+
+.vectorDiv {
+  width: 50px;
+  height: 50px;
+  background-color: #4c5b69;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    text-align: left;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navbar-top {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .searchbar {
+    width: 100%;
+  }
+}

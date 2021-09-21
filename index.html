@@ -5,14 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
   <link rel="icon" href="images/favicon.ico">
+  <link rel="stylesheet" crossorigin="anonymous"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&family=Racing+Sans+One&family=Work+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header>
+    <div class="header align-text-center">
+      <div class="container">
+        <div class="row justify-center">
+          <div class="column-half">
+            <h2>Ani-Log</h2>
+          </div>
+          <div class="column-half navbar-top">
+            <nav>
+              <ul>
+                <li class="padding-lr-1">
+                  <i class="fas fa-search"></i>
+                </li>
+                <li class="padding-lr-1">
+                  <i class="fas fa-list-alt"></i>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </header>
   <main>
+    <div class="container">
+      <div data-view="search-page" class="hidden">
+        <div class="search">
+          <div class="row justify-center">
+            <h1>Search Anime:</h1>
+          </div>
+          <div class="row justify-center shadow">
+            <input type="text" class="searchbar">
+            <button class="search-btn">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search results -->
+      <div class="row">
+        <div class="vectorDiv"></div>
+      </div>
+
+      <!-- Bottom Navbar -->
+      <div class="navbar">
+        <div class="container">
+          <div class="row">
+            <div class="column-full">
+              <nav>
+                <ul>
+                  <li class="padding-lr-1">
+                    <i class="fas fa-search"></i>
+                  </li>
+                  <li class="padding-lr-1">
+                    <i class="fas fa-list-alt"></i>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
