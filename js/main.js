@@ -54,12 +54,19 @@ function createResult(animeObj) {
 var $searchBar = document.querySelector('.searchBar');
 var $searchBtn = document.querySelector('.search-btn');
 var $searchBarResults = document.querySelector('.searchBar.results');
-// var $searchBtnResults = document.querySelector('.search-btn.results');
+var $searchBtnResults = document.querySelector('.search-btn.results');
 
 $searchBtn.addEventListener('click', onSearch);
+$searchBtnResults.addEventListener('click', resultsOnSearch);
 
 function onSearch(event) {
-  var searchVal = $searchBar.value;
+  var searchBar;
+  if (data.view === 'search-page') {
+    searchBar = $searchBar;
+  } else {
+    searchBar = $searchBarResults;
+  }
+  var searchVal = searchBar.value;
   var jikanReq = new XMLHttpRequest();
   jikanReq.open('GET', 'https://api.jikan.moe/v3/search/anime?q=' + searchVal);
   jikanReq.responseType = 'json';
@@ -75,6 +82,11 @@ function onSearch(event) {
   $searchBarResults.value = searchVal;
 }
 
+function resultsOnSearch(event) {
+  clearResults();
+  onSearch();
+}
+
 var $views = document.querySelectorAll('.view');
 
 function switchViews(view) {
@@ -85,5 +97,12 @@ function switchViews(view) {
     } else {
       $views[i].className = 'view hidden';
     }
+  }
+}
+
+function clearResults() {
+  var currDomResults = document.querySelectorAll('.result-list li');
+  for (var i = 0; i < currDomResults.length; i++) {
+    currDomResults[i].remove();
   }
 }
