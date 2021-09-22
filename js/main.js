@@ -62,6 +62,7 @@ $searchBtn.addEventListener('click', onSearch);
 $searchBtnResults.addEventListener('click', resultsOnSearch);
 
 function onSearch(event) {
+  data.searchList = [];
   var searchBar;
   if (data.view === 'search-page') {
     searchBar = $searchBar;
