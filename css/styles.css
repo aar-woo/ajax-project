@@ -146,11 +146,8 @@ input {
   margin-bottom: 1.5rem;
 }
 
-.img-card {
+.img {
   width: 40%;
-}
-
-.img-card > img {
   object-fit: cover;
   border-radius: 5px;
 }
