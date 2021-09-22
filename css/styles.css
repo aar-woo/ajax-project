@@ -71,7 +71,7 @@ input {
   height: 2rem;
   border-right: none;
   border: none;
-  box-shadow: 0 11px 20px -3px #000;
+  box-shadow: 0 8px 8px -4px rgba(0, 0, 0, 0.5);
 }
 
 .search-btn {
@@ -105,9 +105,79 @@ input {
 }
 
 .vectorDiv {
-  width: 50px;
-  height: 50px;
+  width: 12rem;
+  height: 2rem;
   background-color: #4c5b69;
+  position: relative;
+}
+
+.vectorDiv::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 2rem solid #4c5b69;
+  border-right: 2rem solid transparent;
+  position: absolute;
+  top: 0;
+  left: 100%;
+}
+
+.margin-0 {
+  margin: 0;
+}
+
+.margin-tb {
+  margin: 1.5rem 0;
+}
+
+.search-heading {
+  margin: 0 0.4rem;
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+.anime-card {
+  padding: 0.5rem 0.5rem;
+  width: 100%;
+  background-color: rgba(35, 63, 87, 0.7);
+  border-radius: 5px;
+  box-shadow: 0 8px 8px -4px rgba(0, 0, 0, 0.5);
+}
+
+.img-card {
+  width: 40%;
+}
+
+.img-card > img {
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.text-card {
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  width: 60%;
+  height: 100%;
+  background-color: rgba(102, 123, 142, 0.7);
+  border-radius: 5px;
+}
+
+.text-card > p {
+  font-size: 0.7rem;
+  font-style: italic;
+}
+
+.margin-top-half {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.width-100 {
+  width: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -130,6 +200,12 @@ input {
 
 @media screen and (min-width: 768px) {
   .searchbar {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .text-card {
     width: 100%;
   }
 }

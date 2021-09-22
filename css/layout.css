@@ -8,6 +8,7 @@
   padding: 0 1.5rem;
 }
 
+.flex,
 .row {
   display: flex;
 }
@@ -15,6 +16,14 @@
 .column-full,
 .column-half {
   width: 100%;
+}
+
+.column-third {
+  width: calc(100% / 3);
+}
+
+.column-two-thirds {
+  width: calc(200% / 3);
 }
 
 @media screen and (min-width: 768px) {
