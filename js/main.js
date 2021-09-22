@@ -74,7 +74,8 @@ function onSearch(event) {
   jikanReq.addEventListener('load', function () {
     var searchList = jikanReq.response.results;
     for (var result = 0; result < 5; result++) {
-      createResult(searchList[result]);
+      var searchResult = createResult(searchList[result]);
+      $results.appendChild(searchResult);
     }
   });
   jikanReq.send();
