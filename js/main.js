@@ -53,7 +53,7 @@ function createResult(animeObj) {
 
 var $searchBar = document.querySelector('.searchBar');
 var $searchBtn = document.querySelector('.search-btn');
-// var $searchBarResults = document.querySelector('.searchBar.results');
+var $searchBarResults = document.querySelector('.searchBar.results');
 // var $searchBtnResults = document.querySelector('.search-btn.results');
 
 $searchBtn.addEventListener('click', onSearch);
@@ -72,6 +72,7 @@ function onSearch(event) {
   });
   jikanReq.send();
   switchViews('search-results');
+  $searchBarResults.value = searchVal;
 }
 
 var $views = document.querySelectorAll('.view');
@@ -80,6 +81,7 @@ function switchViews(view) {
   for (var i = 0; i < $views.length; i++) {
     if ($views[i].getAttribute('data-view') === view) {
       $views[i].className = 'view';
+      data.view = view;
     } else {
       $views[i].className = 'view hidden';
     }
