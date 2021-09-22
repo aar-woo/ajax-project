@@ -122,4 +122,17 @@ function searchIconClick(event) {
   switchViews('search-page');
 }
 
-// var $addBtn = document.querySelector('.add-btn');
+$results.addEventListener('click', addClick);
+
+function addClick(event) {
+  if (event.target.tagName !== 'BUTTON') {
+    return;
+  }
+  var resultSelected = event.target.closest('li');
+
+  for (var i = 0; i < data.searchList.length; i++) {
+    if (data.searchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+      data.watchList.push(data.searchList[i]);
+    }
+  }
+}
