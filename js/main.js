@@ -67,6 +67,7 @@ function onSearch(event) {
     for (var result = 0; result < 5; result++) {
       var searchResult = createResult(searchList[result]);
       $results.appendChild(searchResult);
+      data.searchList.push(searchList[result]);
     }
   });
   jikanReq.send();
