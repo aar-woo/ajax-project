@@ -4,7 +4,7 @@ var $results = document.querySelector('.result-list');
 
 function createResult(animeObj) {
   var $li = document.createElement('li');
-  $li.className = 'anime-card flex align-items-center';
+  $li.className = 'anime-card align-items-center';
 
   var $divRow = document.createElement('div');
   $divRow.className = 'row width-100';
@@ -32,6 +32,13 @@ function createResult(animeObj) {
   $synopsis.className = 'margin-0';
   $synopsis.textContent = animeObj.synopsis;
 
+  var $divBtnrow = document.createElement('div');
+  $divBtnrow.className = 'row justify-end margin-top-half';
+
+  var $addBtn = document.createElement('button');
+  $addBtn.className = 'btn';
+  $addBtn.textContent = 'ADD';
+
   $li.appendChild($divRow);
   $divRow.appendChild($img);
   $divRow.appendChild($textCard);
@@ -39,6 +46,8 @@ function createResult(animeObj) {
   $textCard.appendChild($title);
   $textCard.appendChild($synopsisHeader);
   $textCard.appendChild($synopsis);
+  $li.appendChild($divBtnrow);
+  $divBtnrow.appendChild($addBtn);
 
   return $li;
 }

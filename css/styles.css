@@ -170,6 +170,20 @@ input {
   flex-wrap: wrap;
 }
 
+.justify-end {
+  justify-content: end;
+}
+
+.btn {
+  font-family: "Open Sans", sans-serif;
+  color: white;
+  background-color: #26a69a;
+  padding: 0.2rem 0.9rem;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.5);
+}
+
 @media screen and (min-width: 768px) {
   .header {
     text-align: left;
