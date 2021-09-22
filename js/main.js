@@ -12,12 +12,6 @@
 
 // const { Linter } = require('eslint');
 
-var exampleObj = {
-  image_url: 'https://cdn.myanimelist.net/images/anime/11/33657.jpg',
-  title: 'Hunter x Hunter',
-  synopsis: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed possimus dignissimos vero reiciendis cumque eligendi dicta doloribus? Veritatis incidunt illum distinctio natus nemo.'
-};
-
 var $results = document.querySelector('.result-list');
 
 function createResult(animeObj) {
@@ -57,8 +51,6 @@ function createResult(animeObj) {
   return $li;
 }
 
-$results.appendChild(createResult(exampleObj));
-
 var $searchBar = document.querySelector('.searchBar');
 var $searchBtn = document.querySelector('.search-btn');
 // var $searchBarResults = document.querySelector('.searchBar.results');
@@ -79,4 +71,17 @@ function onSearch(event) {
     }
   });
   jikanReq.send();
+  switchViews('search-results');
+}
+
+var $views = document.querySelectorAll('.view');
+
+function switchViews(view) {
+  for (var i = 0; i < $views.length; i++) {
+    if ($views[i].getAttribute('data-view') === view) {
+      $views[i].className = 'view';
+    } else {
+      $views[i].className = 'view hidden';
+    }
+  }
 }
