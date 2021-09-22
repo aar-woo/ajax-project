@@ -68,5 +68,14 @@ $searchBtn.addEventListener('click', onSearch);
 
 function onSearch(event) {
   var searchVal = $searchBar.value;
-  return searchVal;
+  var jikanReq = new XMLHttpRequest();
+  jikanReq.open('GET', 'https://api.jikan.moe/v3/search/anime?q=' + searchVal);
+  jikanReq.responseType = 'json';
+  jikanReq.addEventListener('load', function () {
+    var searchList = jikanReq.response.results;
+    for (var result = 0; result < 5; result++) {
+      createResult(searchList[result]);
+    }
+  });
+  jikanReq.send();
 }
