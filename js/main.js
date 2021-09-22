@@ -7,7 +7,7 @@ function createResult(animeObj) {
   $li.className = 'anime-card flex align-items-center';
 
   var $divRow = document.createElement('div');
-  $divRow.className = 'row';
+  $divRow.className = 'row width-100';
 
   var $img = document.createElement('img');
   $img.setAttribute('src', animeObj.image_url);

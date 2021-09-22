@@ -3,8 +3,6 @@ body {
   color: white;
   font-family: 'Open sans', sans-serif;
   background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(https://cutewallpaper.org/22/animes-crossover-4k-wallpapers/46344591.jpg);
-
-  /* background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://cutewallpaper.org/22/animes-crossover-4k-wallpapers/46344591.jpg); */
   background-position: left 65% top 5%;
   background-attachment: fixed;
 }
@@ -34,16 +32,6 @@ i {
 input {
   outline: none;
 }
-
-
-/* .overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 70px;
-  bottom: 0;
-  right: 0;
-  left: 0;
-} */
 
 .navbar,
 .header {
@@ -178,8 +166,7 @@ input {
   width: 100%;
 }
 
-.result-list {
-  /* display: inline-block; */
+.wrap {
   flex-wrap: wrap;
 }
 
