@@ -9,3 +9,10 @@ body {
 ul {
   padding-inline-start: 0;
 }
+
+a {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  text-decoration: none;
+}

@@ -6,6 +6,9 @@ function createResult(animeObj) {
   var $li = document.createElement('li');
   $li.className = 'anime-card flex align-items-center';
 
+  var $divRow = document.createElement('div');
+  $divRow.className = 'row';
+
   var $img = document.createElement('img');
   $img.setAttribute('src', animeObj.image_url);
   $img.className = 'img';
@@ -29,8 +32,9 @@ function createResult(animeObj) {
   $synopsis.className = 'margin-0';
   $synopsis.textContent = animeObj.synopsis;
 
-  $li.appendChild($img);
-  $li.appendChild($textCard);
+  $li.appendChild($divRow);
+  $divRow.appendChild($img);
+  $divRow.appendChild($textCard);
   $textCard.appendChild($titleHeader);
   $textCard.appendChild($title);
   $textCard.appendChild($synopsisHeader);
