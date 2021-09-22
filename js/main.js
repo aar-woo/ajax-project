@@ -5,6 +5,7 @@ var $results = document.querySelector('.result-list');
 function createResult(animeObj) {
   var $li = document.createElement('li');
   $li.className = 'anime-card align-items-center';
+  $li.setAttribute('id', animeObj.mal_id);
 
   var $divRow = document.createElement('div');
   $divRow.className = 'row width-100';
@@ -36,7 +37,7 @@ function createResult(animeObj) {
   $divBtnrow.className = 'row justify-end margin-top-half';
 
   var $addBtn = document.createElement('button');
-  $addBtn.className = 'btn';
+  $addBtn.className = 'btn add-btn';
   $addBtn.textContent = 'ADD';
 
   $li.appendChild($divRow);
@@ -120,3 +121,5 @@ function searchIconClick(event) {
   clearResults();
   switchViews('search-page');
 }
+
+// var $addBtn = document.querySelector('.add-btn');
