@@ -1,15 +1,3 @@
-/*
-<li class="anime-card flex align-items-center">
-  <img src="images/fmab.jpeg" class="img">
-  <div class="text-card">
-    <h5 class="margin-0">Title:</h5>
-    <p class="margin-0">Naruto</p>
-    <h5 class="margin-top-half">Synopsis:</h5>
-    <p class="margin-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed possimus dignissimos vero reiciendis cumque eligendi dicta doloribus? Veritatis incidunt illum distinctio natus nemo.</p>
-  </div>
-</li>
-*/
-
 // const { Linter } = require('eslint');
 
 var $results = document.querySelector('.result-list');
@@ -105,4 +93,16 @@ function clearResults() {
   for (var i = 0; i < currDomResults.length; i++) {
     currDomResults[i].remove();
   }
+}
+
+var $searchIcon = document.querySelector('.navbar .fa-search');
+var $searchIconTop = document.querySelector('.navbar-top .fa-search');
+
+$searchIcon.addEventListener('click', searchIconClick);
+$searchIconTop.addEventListener('click', searchIconClick);
+
+function searchIconClick(event) {
+  $searchBar.value = '';
+  clearResults();
+  switchViews('search-page');
 }

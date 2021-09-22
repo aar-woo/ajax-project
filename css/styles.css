@@ -5,7 +5,7 @@ body {
   background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(https://cutewallpaper.org/22/animes-crossover-4k-wallpapers/46344591.jpg);
 
   /* background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://cutewallpaper.org/22/animes-crossover-4k-wallpapers/46344591.jpg); */
-  background-position: left 60% top 5%;
+  background-position: left 70% top 5%;
   background-attachment: fixed;
 }
 
@@ -61,6 +61,7 @@ input {
 
 .search {
   margin-top: 6rem;
+  text-shadow: 2px 3px #233f57;
 }
 
 .searchBar {
