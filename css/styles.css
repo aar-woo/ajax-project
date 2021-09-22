@@ -1,14 +1,10 @@
-/* body {
-  color: white;
-  font-family: 'Open sans', sans-serif;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://cutewallpaper.org/22/animes-crossover-4k-wallpapers/46344591.jpg);
-  background-position: left 60% top 5%;
-} */
 
 body {
   color: white;
   font-family: 'Open sans', sans-serif;
   background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(https://cutewallpaper.org/22/animes-crossover-4k-wallpapers/46344591.jpg);
+
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://cutewallpaper.org/22/animes-crossover-4k-wallpapers/46344591.jpg); */
   background-position: left 60% top 5%;
   background-attachment: fixed;
 }
@@ -67,7 +63,7 @@ input {
   margin-top: 6rem;
 }
 
-.searchbar {
+.searchBar {
   width: 20rem;
   height: 2rem;
   border-right: none;
@@ -203,7 +199,7 @@ input {
 }
 
 @media screen and (min-width: 768px) {
-  .searchbar {
+  .searchBar {
     width: 100%;
   }
 }

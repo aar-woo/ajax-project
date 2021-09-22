@@ -58,3 +58,15 @@ function createResult(animeObj) {
 }
 
 $results.appendChild(createResult(exampleObj));
+
+var $searchBar = document.querySelector('.searchBar');
+var $searchBtn = document.querySelector('.search-btn');
+// var $searchBarResults = document.querySelector('.searchBar.results');
+// var $searchBtnResults = document.querySelector('.search-btn.results');
+
+$searchBtn.addEventListener('click', onSearch);
+
+function onSearch(event) {
+  var searchVal = $searchBar.value;
+  return searchVal;
+}
