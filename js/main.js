@@ -71,14 +71,23 @@ function createResult(animeObj) {
 
   var $upArrow = document.createElement('i');
   $upArrow.className = 'fas fa-arrow-alt-circle-up';
+  $upArrow.setAttribute('id', 1);
+
   var $upArrow2 = document.createElement('i');
   $upArrow2.className = 'fas fa-arrow-alt-circle-up';
+  $upArrow2.setAttribute('id', 2);
+
   var $upArrow3 = document.createElement('i');
   $upArrow3.className = 'fas fa-arrow-alt-circle-up';
+  $upArrow3.setAttribute('id', 3);
+
   var $upArrow4 = document.createElement('i');
   $upArrow4.className = 'fas fa-arrow-alt-circle-up';
+  $upArrow4.setAttribute('id', 4);
+
   var $upArrow5 = document.createElement('i');
   $upArrow5.className = 'fas fa-arrow-alt-circle-up';
+  $upArrow5.setAttribute('id', 5);
 
   $li.appendChild($divRow);
   $divRow.appendChild($img);
@@ -244,4 +253,22 @@ function deleteResult(event) {
   if (data.watchList.length === 0) {
     $emptyHeader.className = 'emptyHeader';
   }
+}
+
+$watchList.addEventListener('click', setPriority);
+
+function setPriority(event) {
+  if (event.target.tagName !== 'I') {
+    return;
+  }
+  var resultSelected = event.target.closest('li'); // anime obj DOM tree
+  var animeObjIndex;
+  for (var i = 0; i < data.watchList.length; i++) {
+    if (data.watchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+      animeObjIndex = i;
+    }
+  }
+  var $arrowsDivSelected = event.target.closest('.up-arrows');
+  var $arrowsList = $arrowsDivSelected.querySelectorAll('.fa-arrow-alt-circle-up');
+
 }

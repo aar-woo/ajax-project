@@ -207,6 +207,10 @@ input {
   transform: translateY(0.2rem);
 }
 
+.fill-arrow {
+  background-color: #ffbf1e;
+}
+
 @media screen and (min-width: 768px) {
   .header {
     text-align: left;
