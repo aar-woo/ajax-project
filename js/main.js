@@ -178,3 +178,13 @@ function renderWatchList(event) {
     $watchList.prepend(createResult(data.watchList[i]));
   }
 }
+
+$watchList.addEventListener('click', deleteResult);
+
+function deleteResult(event) {
+  if (event.target.tagName !== 'BUTTON') {
+    return;
+  }
+  var resultSelected = event.target.closest('li');
+  console.log('selected', resultSelected);
+}
