@@ -46,6 +46,7 @@ input {
   justify-content: center;
 }
 
+.emptyHeader,
 .search {
   margin-top: 7rem;
   text-shadow: 2px 3px #233f57;
