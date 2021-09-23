@@ -151,4 +151,5 @@ function onDomLoad(event) {
   }
 }
 
-window.addEventListener('DOMContentLoaded', onDomLoad);
+// Prevents hiding view, uncomment out later
+// window.addEventListener('DOMContentLoaded', onDomLoad);
