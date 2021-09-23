@@ -1,8 +1,8 @@
 // const { Linter } = require('eslint');
-
 var $results = document.querySelector('.result-list');
 
 function createResult(animeObj) {
+
   var $li = document.createElement('li');
   $li.className = 'anime-card align-items-center';
   $li.setAttribute('id', animeObj.mal_id);
@@ -40,6 +40,8 @@ function createResult(animeObj) {
   $addBtn.className = 'btn add-btn';
   $addBtn.textContent = 'ADD';
 
+  // var $resultForm = document.createElement('form');
+
   $li.appendChild($divRow);
   $divRow.appendChild($img);
   $divRow.appendChild($textCard);
@@ -48,9 +50,14 @@ function createResult(animeObj) {
   $textCard.appendChild($synopsisHeader);
   $textCard.appendChild($synopsis);
   $li.appendChild($divBtnrow);
+
+  // $li.appendChild($resultForm);
+  // $resultForm.appendChild($divBtnrow);
+
   $divBtnrow.appendChild($addBtn);
 
   return $li;
+
 }
 
 var $searchBar = document.querySelector('.searchBar');
@@ -126,6 +133,8 @@ function searchIconClick(event) {
 $results.addEventListener('click', addClick);
 
 function addClick(event) {
+  event.preventDefault();
+
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
