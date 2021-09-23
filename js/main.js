@@ -108,10 +108,13 @@ function clearResults() {
   data.searchList = [];
   data.search = '';
   $searchBar.value = '';
-
   var currDomResults = document.querySelectorAll('.result-list li');
   for (var i = 0; i < currDomResults.length; i++) {
     currDomResults[i].remove();
+  }
+  var currWatchResults = document.querySelectorAll('.watch-list li');
+  for (var j = 0; j < currWatchResults.length; j++) {
+    currWatchResults[j].remove();
   }
 }
 
@@ -148,11 +151,24 @@ function onDomLoad(event) {
     for (var i = 0; i < data.searchList.length; i++) {
       $results.appendChild(createResult(data.searchList[i]));
     }
+  } else if (data.view === 'watch-list') {
+    renderWatchList();
   }
 }
 
 // Prevents hiding view, uncomment out later
-// window.addEventListener('DOMContentLoaded', onDomLoad);
+window.addEventListener('DOMContentLoaded', onDomLoad);
 
 var $watchListIcon = document.querySelector('.navbar .fa-list-alt');
 var $watchListIconTop = document.querySelector('.navbar-top .fa-list-alt');
+var $watchList = document.querySelector('.watch-list');
+
+$watchListIcon.addEventListener('click', renderWatchList);
+
+function renderWatchList(event) {
+  clearResults();
+  switchViews('watch-list');
+  for (var i = 0; i < data.watchList.length; i++) {
+    $watchList.prepend(createResult(data.watchList[i]));
+  }
+}
