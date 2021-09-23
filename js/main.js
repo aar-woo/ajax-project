@@ -142,6 +142,7 @@ function addClick(event) {
       data.watchList.push(data.searchList[i]);
     }
   }
+  renderWatchList();
 }
 
 function onDomLoad(event) {
@@ -164,6 +165,7 @@ var $watchListIconTop = document.querySelector('.navbar-top .fa-list-alt');
 var $watchList = document.querySelector('.watch-list');
 
 $watchListIcon.addEventListener('click', renderWatchList);
+$watchListIconTop.addEventListener('click', renderWatchList);
 
 function renderWatchList(event) {
   clearResults();
