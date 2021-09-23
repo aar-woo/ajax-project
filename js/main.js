@@ -1,10 +1,11 @@
 // const { Linter } = require('eslint');
-
 var $results = document.querySelector('.result-list');
 
 function createResult(animeObj) {
+
   var $li = document.createElement('li');
-  $li.className = 'anime-card flex align-items-center';
+  $li.className = 'anime-card align-items-center';
+  $li.setAttribute('id', animeObj.mal_id);
 
   var $divRow = document.createElement('div');
   $divRow.className = 'row width-100';
@@ -32,6 +33,13 @@ function createResult(animeObj) {
   $synopsis.className = 'margin-0';
   $synopsis.textContent = animeObj.synopsis;
 
+  var $divBtnrow = document.createElement('div');
+  $divBtnrow.className = 'row justify-end margin-top-half';
+
+  var $addBtn = document.createElement('button');
+  $addBtn.className = 'btn add-btn';
+  $addBtn.textContent = 'ADD';
+
   $li.appendChild($divRow);
   $divRow.appendChild($img);
   $divRow.appendChild($textCard);
@@ -39,6 +47,8 @@ function createResult(animeObj) {
   $textCard.appendChild($title);
   $textCard.appendChild($synopsisHeader);
   $textCard.appendChild($synopsis);
+  $li.appendChild($divBtnrow);
+  $divBtnrow.appendChild($addBtn);
 
   return $li;
 }
@@ -58,20 +68,22 @@ function onSearch(event) {
   } else {
     searchBar = $searchBarResults;
   }
-  var searchVal = searchBar.value;
+  data.search = searchBar.value;
+
   var jikanReq = new XMLHttpRequest();
-  jikanReq.open('GET', 'https://api.jikan.moe/v3/search/anime?q=' + searchVal);
+  jikanReq.open('GET', 'https://api.jikan.moe/v3/search/anime?q=' + data.search);
   jikanReq.responseType = 'json';
   jikanReq.addEventListener('load', function () {
     var searchList = jikanReq.response.results;
     for (var result = 0; result < 5; result++) {
       var searchResult = createResult(searchList[result]);
       $results.appendChild(searchResult);
+      data.searchList.push(searchList[result]);
     }
   });
   jikanReq.send();
   switchViews('search-results');
-  $searchBarResults.value = searchVal;
+  $searchBarResults.value = data.search;
 }
 
 function resultsOnSearch(event) {
@@ -93,6 +105,10 @@ function switchViews(view) {
 }
 
 function clearResults() {
+  data.searchList = [];
+  data.search = '';
+  $searchBar.value = '';
+
   var currDomResults = document.querySelectorAll('.result-list li');
   for (var i = 0; i < currDomResults.length; i++) {
     currDomResults[i].remove();
@@ -106,7 +122,33 @@ $searchIcon.addEventListener('click', searchIconClick);
 $searchIconTop.addEventListener('click', searchIconClick);
 
 function searchIconClick(event) {
-  $searchBar.value = '';
   clearResults();
   switchViews('search-page');
 }
+
+$results.addEventListener('click', addClick);
+
+function addClick(event) {
+  event.preventDefault();
+  if (event.target.tagName !== 'BUTTON') {
+    return;
+  }
+  var resultSelected = event.target.closest('li');
+  for (var i = 0; i < data.searchList.length; i++) {
+    if (data.searchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+      data.watchList.push(data.searchList[i]);
+    }
+  }
+}
+
+function onDomLoad(event) {
+  switchViews(data.view);
+  if (data.view === 'search-results') {
+    $searchBarResults.value = data.search;
+    for (var i = 0; i < data.searchList.length; i++) {
+      $results.appendChild(createResult(data.searchList[i]));
+    }
+  }
+}
+
+window.addEventListener('DOMContentLoaded', onDomLoad);
