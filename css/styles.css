@@ -99,6 +99,15 @@ input {
   position: relative;
 }
 
+.vectorDiv.watchListHeader {
+  width: 9rem;
+}
+
+.watchListHeader i {
+  font-size: x-large;
+  padding-left: 0.4rem;
+}
+
 .vectorDiv::after {
   content: '';
   width: 0;
