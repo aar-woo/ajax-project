@@ -157,7 +157,6 @@ function onDomLoad(event) {
   }
 }
 
-// Prevents hiding view, uncomment out later
 window.addEventListener('DOMContentLoaded', onDomLoad);
 
 var $watchListIcon = document.querySelector('.navbar .fa-list-alt');
