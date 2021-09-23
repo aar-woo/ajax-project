@@ -36,9 +36,14 @@ function createResult(animeObj) {
   var $divBtnrow = document.createElement('div');
   $divBtnrow.className = 'row justify-end margin-top-half';
 
-  var $addBtn = document.createElement('button');
-  $addBtn.className = 'btn add-btn';
-  $addBtn.textContent = 'ADD';
+  var $btn = document.createElement('button');
+  if (data.view === 'search-results') {
+    $btn.className = 'btn add-btn';
+    $btn.textContent = 'ADD';
+  } else if (data.view === 'watch-list') {
+    $btn.className = 'btn remove-btn';
+    $btn.textContent = 'REMOVE';
+  }
 
   $li.appendChild($divRow);
   $divRow.appendChild($img);
@@ -48,7 +53,7 @@ function createResult(animeObj) {
   $textCard.appendChild($synopsisHeader);
   $textCard.appendChild($synopsis);
   $li.appendChild($divBtnrow);
-  $divBtnrow.appendChild($addBtn);
+  $divBtnrow.appendChild($btn);
 
   return $li;
 }

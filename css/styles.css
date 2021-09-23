@@ -193,6 +193,10 @@ input {
   cursor: pointer;
 }
 
+.remove-btn {
+  background-color: #cc0101;
+}
+
 .btn:active {
   transform: translateY(0.2rem);
 }
