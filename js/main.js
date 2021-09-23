@@ -40,8 +40,6 @@ function createResult(animeObj) {
   $addBtn.className = 'btn add-btn';
   $addBtn.textContent = 'ADD';
 
-  // var $resultForm = document.createElement('form');
-
   $li.appendChild($divRow);
   $divRow.appendChild($img);
   $divRow.appendChild($textCard);
@@ -50,9 +48,6 @@ function createResult(animeObj) {
   $textCard.appendChild($synopsisHeader);
   $textCard.appendChild($synopsis);
   $li.appendChild($divBtnrow);
-
-  // $li.appendChild($resultForm);
-  // $resultForm.appendChild($divBtnrow);
 
   $divBtnrow.appendChild($addBtn);
 
