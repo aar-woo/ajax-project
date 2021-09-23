@@ -1,4 +1,18 @@
 // const { Linter } = require('eslint');
+
+/*
+
+  <div class="flex align-items-center">
+    <h4 class="margin-0">Priority:</h4>
+    <ul class="up-arrows padding-lr-half">
+      <i class="fas fa-arrow-alt-circle-up"></i>
+      <i class="fas fa-arrow-alt-circle-up"></i>
+      <i class="fas fa-arrow-alt-circle-up"></i>
+      <i class="fas fa-arrow-alt-circle-up"></i>
+      <i class="fas fa-arrow-alt-circle-up"></i>
+    </ul>
+  </div>
+   */
 var $results = document.querySelector('.result-list');
 
 function createResult(animeObj) {
@@ -34,7 +48,7 @@ function createResult(animeObj) {
   $synopsis.textContent = animeObj.synopsis;
 
   var $divBtnrow = document.createElement('div');
-  $divBtnrow.className = 'row justify-end margin-top-half';
+  $divBtnrow.className = 'row justify-between margin-top-half';
 
   var $btn = document.createElement('button');
   if (data.view === 'search-results') {
@@ -45,6 +59,27 @@ function createResult(animeObj) {
     $btn.textContent = 'REMOVE';
   }
 
+  var $priorityDiv = document.createElement('div');
+  $priorityDiv.className = 'flex align-items-center';
+
+  var $priorityHeader = document.createElement('h3');
+  $priorityHeader.className = 'margin-0';
+  $priorityHeader.textContent = 'Priority';
+
+  var $arrowsDiv = document.createElement('div');
+  $arrowsDiv.className = 'up-arrows flex padding-lr-third align-items-center';
+
+  var $upArrow = document.createElement('i');
+  $upArrow.className = 'fas fa-arrow-alt-circle-up';
+  var $upArrow2 = document.createElement('i');
+  $upArrow2.className = 'fas fa-arrow-alt-circle-up';
+  var $upArrow3 = document.createElement('i');
+  $upArrow3.className = 'fas fa-arrow-alt-circle-up';
+  var $upArrow4 = document.createElement('i');
+  $upArrow4.className = 'fas fa-arrow-alt-circle-up';
+  var $upArrow5 = document.createElement('i');
+  $upArrow5.className = 'fas fa-arrow-alt-circle-up';
+
   $li.appendChild($divRow);
   $divRow.appendChild($img);
   $divRow.appendChild($textCard);
@@ -53,6 +88,14 @@ function createResult(animeObj) {
   $textCard.appendChild($synopsisHeader);
   $textCard.appendChild($synopsis);
   $li.appendChild($divBtnrow);
+  $divBtnrow.appendChild($priorityDiv);
+  $priorityDiv.appendChild($priorityHeader);
+  $priorityDiv.appendChild($arrowsDiv);
+  $arrowsDiv.appendChild($upArrow);
+  $arrowsDiv.appendChild($upArrow2);
+  $arrowsDiv.appendChild($upArrow3);
+  $arrowsDiv.appendChild($upArrow4);
+  $arrowsDiv.appendChild($upArrow5);
   $divBtnrow.appendChild($btn);
 
   return $li;

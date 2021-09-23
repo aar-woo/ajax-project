@@ -85,12 +85,17 @@ input {
   justify-content: end;
 }
 
+.up-arrows i,
 .search-btn i {
   font-size: large;
 }
 
 .padding-lr-1 {
   padding: 0 1rem;
+}
+
+.padding-lr-third {
+  padding: 0 0.3rem;
 }
 
 .vectorDiv {
@@ -179,8 +184,8 @@ input {
   flex-wrap: wrap;
 }
 
-.justify-end {
-  justify-content: end;
+.justify-between {
+  justify-content: space-between;
 }
 
 .btn {
