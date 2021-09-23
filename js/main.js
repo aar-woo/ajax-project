@@ -51,7 +51,6 @@ function createResult(animeObj) {
   $divBtnrow.appendChild($addBtn);
 
   return $li;
-
 }
 
 var $searchBar = document.querySelector('.searchBar');
@@ -108,6 +107,8 @@ function switchViews(view) {
 function clearResults() {
   data.searchList = [];
   data.search = '';
+  $searchBar.value = '';
+
   var currDomResults = document.querySelectorAll('.result-list li');
   for (var i = 0; i < currDomResults.length; i++) {
     currDomResults[i].remove();
@@ -121,7 +122,6 @@ $searchIcon.addEventListener('click', searchIconClick);
 $searchIconTop.addEventListener('click', searchIconClick);
 
 function searchIconClick(event) {
-  $searchBar.value = '';
   clearResults();
   switchViews('search-page');
 }
@@ -130,12 +130,10 @@ $results.addEventListener('click', addClick);
 
 function addClick(event) {
   event.preventDefault();
-
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
   var resultSelected = event.target.closest('li');
-
   for (var i = 0; i < data.searchList.length; i++) {
     if (data.searchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
       data.watchList.push(data.searchList[i]);
@@ -145,7 +143,6 @@ function addClick(event) {
 
 function onDomLoad(event) {
   switchViews(data.view);
-
   if (data.view === 'search-results') {
     $searchBarResults.value = data.search;
     for (var i = 0; i < data.searchList.length; i++) {
