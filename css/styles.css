@@ -46,6 +46,7 @@ input {
   justify-content: center;
 }
 
+.emptyHeader,
 .search {
   margin-top: 7rem;
   text-shadow: 2px 3px #233f57;
@@ -191,6 +192,10 @@ input {
   border-radius: 3px;
   box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.5);
   cursor: pointer;
+}
+
+.remove-btn {
+  background-color: #cc0101;
 }
 
 .btn:active {

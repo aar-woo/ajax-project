@@ -36,9 +36,14 @@ function createResult(animeObj) {
   var $divBtnrow = document.createElement('div');
   $divBtnrow.className = 'row justify-end margin-top-half';
 
-  var $addBtn = document.createElement('button');
-  $addBtn.className = 'btn add-btn';
-  $addBtn.textContent = 'ADD';
+  var $btn = document.createElement('button');
+  if (data.view === 'search-results') {
+    $btn.className = 'btn add-btn';
+    $btn.textContent = 'ADD';
+  } else if (data.view === 'watch-list') {
+    $btn.className = 'btn remove-btn';
+    $btn.textContent = 'REMOVE';
+  }
 
   $li.appendChild($divRow);
   $divRow.appendChild($img);
@@ -48,7 +53,7 @@ function createResult(animeObj) {
   $textCard.appendChild($synopsisHeader);
   $textCard.appendChild($synopsis);
   $li.appendChild($divBtnrow);
-  $divBtnrow.appendChild($addBtn);
+  $divBtnrow.appendChild($btn);
 
   return $li;
 }
@@ -108,6 +113,7 @@ function clearResults() {
   data.searchList = [];
   data.search = '';
   $searchBar.value = '';
+  $emptyHeader.className = 'emptyHeader hidden';
   var currDomResults = document.querySelectorAll('.result-list li');
   for (var i = 0; i < currDomResults.length; i++) {
     currDomResults[i].remove();
@@ -129,9 +135,9 @@ function searchIconClick(event) {
   switchViews('search-page');
 }
 
-$results.addEventListener('click', addClick);
+$results.addEventListener('click', addResult);
 
-function addClick(event) {
+function addResult(event) {
   event.preventDefault();
   if (event.target.tagName !== 'BUTTON') {
     return;
@@ -162,6 +168,7 @@ window.addEventListener('DOMContentLoaded', onDomLoad);
 var $watchListIcon = document.querySelector('.navbar .fa-list-alt');
 var $watchListIconTop = document.querySelector('.navbar-top .fa-list-alt');
 var $watchList = document.querySelector('.watch-list');
+var $emptyHeader = document.querySelector('.emptyHeader');
 
 $watchListIcon.addEventListener('click', renderWatchList);
 $watchListIconTop.addEventListener('click', renderWatchList);
@@ -169,7 +176,29 @@ $watchListIconTop.addEventListener('click', renderWatchList);
 function renderWatchList(event) {
   clearResults();
   switchViews('watch-list');
+
   for (var i = 0; i < data.watchList.length; i++) {
     $watchList.prepend(createResult(data.watchList[i]));
+  }
+  if (data.watchList.length === 0) {
+    $emptyHeader.className = 'emptyHeader';
+  }
+}
+
+$watchList.addEventListener('click', deleteResult);
+
+function deleteResult(event) {
+  if (event.target.tagName !== 'BUTTON') {
+    return;
+  }
+  var resultSelected = event.target.closest('li');
+  for (var i = 0; i < data.watchList.length; i++) {
+    if (data.watchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+      resultSelected.remove();
+      data.watchList.splice(i, 1);
+    }
+  }
+  if (data.watchList.length === 0) {
+    $emptyHeader.className = 'emptyHeader';
   }
 }
