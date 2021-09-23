@@ -48,7 +48,6 @@ function createResult(animeObj) {
   $textCard.appendChild($synopsisHeader);
   $textCard.appendChild($synopsis);
   $li.appendChild($divBtnrow);
-
   $divBtnrow.appendChild($addBtn);
 
   return $li;
@@ -64,16 +63,16 @@ $searchBtn.addEventListener('click', onSearch);
 $searchBtnResults.addEventListener('click', resultsOnSearch);
 
 function onSearch(event) {
-  data.searchList = [];
   var searchBar;
   if (data.view === 'search-page') {
     searchBar = $searchBar;
   } else {
     searchBar = $searchBarResults;
   }
-  var searchVal = searchBar.value;
+  data.search = searchBar.value;
+
   var jikanReq = new XMLHttpRequest();
-  jikanReq.open('GET', 'https://api.jikan.moe/v3/search/anime?q=' + searchVal);
+  jikanReq.open('GET', 'https://api.jikan.moe/v3/search/anime?q=' + data.search);
   jikanReq.responseType = 'json';
   jikanReq.addEventListener('load', function () {
     var searchList = jikanReq.response.results;
@@ -85,7 +84,7 @@ function onSearch(event) {
   });
   jikanReq.send();
   switchViews('search-results');
-  $searchBarResults.value = searchVal;
+  $searchBarResults.value = data.search;
 }
 
 function resultsOnSearch(event) {
@@ -107,6 +106,8 @@ function switchViews(view) {
 }
 
 function clearResults() {
+  data.searchList = [];
+  data.search = '';
   var currDomResults = document.querySelectorAll('.result-list li');
   for (var i = 0; i < currDomResults.length; i++) {
     currDomResults[i].remove();
@@ -141,3 +142,16 @@ function addClick(event) {
     }
   }
 }
+
+function onDomLoad(event) {
+  switchViews(data.view);
+
+  if (data.view === 'search-results') {
+    $searchBarResults.value = data.search;
+    for (var i = 0; i < data.searchList.length; i++) {
+      $results.appendChild(createResult(data.searchList[i]));
+    }
+  }
+}
+
+window.addEventListener('DOMContentLoaded', onDomLoad);

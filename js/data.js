@@ -2,7 +2,8 @@
 var data = {
   view: 'search-page',
   watchList: [],
-  searchList: []
+  searchList: [],
+  search: ''
 };
 
 var previousDataObj = localStorage.getItem('local-data-object');
