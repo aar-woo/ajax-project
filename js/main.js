@@ -246,9 +246,7 @@ $watchListIconTop.addEventListener('click', renderWatchList);
 function renderWatchList(event) {
   clearResults();
   switchViews('watch-list');
-  // for (var i = 0; i < data.watchList.length; i++) {
-  //   $watchList.prepend(createResult(data.watchList[i]));
-  // }
+
   for (var i = 0; i < data.watchList.length; i++) {
     if (data.watchList[i].priority === null) {
       $watchList.prepend(createResult(data.watchList[i]));
@@ -261,7 +259,6 @@ function renderWatchList(event) {
       }
     }
   }
-
   if (data.watchList.length === 0) {
     $emptyHeader.className = 'emptyHeader';
   }
@@ -292,6 +289,7 @@ function setPriority(event) {
   if (event.target.tagName !== 'I') {
     return;
   }
+
   var resultSelected = event.target.closest('li');
   var animeObjIndex;
   var priorityVal = parseInt(event.target.getAttribute('id'));
@@ -303,7 +301,6 @@ function setPriority(event) {
       animeObjIndex = i;
     }
   }
-
   if (data.watchList[animeObjIndex].priority > priorityVal) {
     for (var arrowIndex = 0; arrowIndex < $arrowsList.length; arrowIndex++) {
       $arrowsList[arrowIndex].className = 'fas fa-arrow-alt-circle-up';
