@@ -96,8 +96,10 @@ function createResult(animeObj) {
   $upArrow5.setAttribute('id', 4);
   arrowsList.push($upArrow5);
 
-  for (var arrowFillIndex = 0; arrowFillIndex <= animeObj.priority; arrowFillIndex++) {
-    arrowsList[arrowFillIndex].className = 'fill-arrow fas fa-arrow-alt-circle-up';
+  if (animeObj.priority !== null) {
+    for (var arrowFillIndex = 0; arrowFillIndex <= animeObj.priority; arrowFillIndex++) {
+      arrowsList[arrowFillIndex].className = 'fill-arrow fas fa-arrow-alt-circle-up';
+    }
   }
 
   $li.appendChild($divRow);
@@ -109,13 +111,16 @@ function createResult(animeObj) {
   $textCard.appendChild($synopsis);
   $li.appendChild($divBtnrow);
   $divBtnrow.appendChild($priorityDiv);
-  $priorityDiv.appendChild($priorityHeader);
-  $priorityDiv.appendChild($arrowsDiv);
-  $arrowsDiv.appendChild($upArrow);
-  $arrowsDiv.appendChild($upArrow2);
-  $arrowsDiv.appendChild($upArrow3);
-  $arrowsDiv.appendChild($upArrow4);
-  $arrowsDiv.appendChild($upArrow5);
+  if (data.view === 'watch-list') {
+    $priorityDiv.appendChild($priorityHeader);
+    $priorityDiv.appendChild($arrowsDiv);
+    $arrowsDiv.appendChild($upArrow);
+    $arrowsDiv.appendChild($upArrow2);
+    $arrowsDiv.appendChild($upArrow3);
+    $arrowsDiv.appendChild($upArrow4);
+    $arrowsDiv.appendChild($upArrow5);
+  }
+
   $divBtnrow.appendChild($btn);
 
   return $li;
@@ -208,6 +213,7 @@ function addResult(event) {
   var resultSelected = event.target.closest('li');
   for (var i = 0; i < data.searchList.length; i++) {
     if (data.searchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+      data.searchList[i].priority = null;
       data.watchList.push(data.searchList[i]);
     }
   }
@@ -251,6 +257,11 @@ function renderWatchList(event) {
       }
     }
   }
+  for (var i = 0; i < data.watchList.length; i++) {
+    if (data.watchList[i].priority === null) {
+      $watchList.append(createResult(data.watchList[i]));
+    }
+  }
   if (data.watchList.length === 0) {
     $emptyHeader.className = 'emptyHeader';
   }
@@ -281,18 +292,18 @@ function setPriority(event) {
   if (event.target.tagName !== 'I') {
     return;
   }
-  var resultSelected = event.target.closest('li'); // anime obj DOM tree
+  var resultSelected = event.target.closest('li');
   var animeObjIndex;
+  var priorityVal = parseInt(event.target.getAttribute('id'));
+  var $arrowsDivSelected = event.target.closest('.up-arrows');
+  var $arrowsList = $arrowsDivSelected.querySelectorAll('.fa-arrow-alt-circle-up');
 
   for (var i = 0; i < data.watchList.length; i++) {
     if (data.watchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
       animeObjIndex = i;
     }
   }
-  var priorityVal = parseInt(event.target.getAttribute('id'));
 
-  var $arrowsDivSelected = event.target.closest('.up-arrows');
-  var $arrowsList = $arrowsDivSelected.querySelectorAll('.fa-arrow-alt-circle-up');
   if (data.watchList[animeObjIndex].priority > priorityVal) {
     for (var arrowIndex = 0; arrowIndex < $arrowsList.length; arrowIndex++) {
       $arrowsList[arrowIndex].className = 'fas fa-arrow-alt-circle-up';
