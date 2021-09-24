@@ -71,23 +71,23 @@ function createResult(animeObj) {
 
   var $upArrow = document.createElement('i');
   $upArrow.className = 'fas fa-arrow-alt-circle-up';
-  $upArrow.setAttribute('id', 1);
+  $upArrow.setAttribute('id', 0);
 
   var $upArrow2 = document.createElement('i');
   $upArrow2.className = 'fas fa-arrow-alt-circle-up';
-  $upArrow2.setAttribute('id', 2);
+  $upArrow2.setAttribute('id', 1);
 
   var $upArrow3 = document.createElement('i');
   $upArrow3.className = 'fas fa-arrow-alt-circle-up';
-  $upArrow3.setAttribute('id', 3);
+  $upArrow3.setAttribute('id', 2);
 
   var $upArrow4 = document.createElement('i');
   $upArrow4.className = 'fas fa-arrow-alt-circle-up';
-  $upArrow4.setAttribute('id', 4);
+  $upArrow4.setAttribute('id', 3);
 
   var $upArrow5 = document.createElement('i');
   $upArrow5.className = 'fas fa-arrow-alt-circle-up';
-  $upArrow5.setAttribute('id', 5);
+  $upArrow5.setAttribute('id', 4);
 
   $li.appendChild($divRow);
   $divRow.appendChild($img);
@@ -263,12 +263,24 @@ function setPriority(event) {
   }
   var resultSelected = event.target.closest('li'); // anime obj DOM tree
   var animeObjIndex;
+
   for (var i = 0; i < data.watchList.length; i++) {
     if (data.watchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
       animeObjIndex = i;
     }
   }
+  var priorityVal = parseInt(event.target.getAttribute('id'));
+
   var $arrowsDivSelected = event.target.closest('.up-arrows');
   var $arrowsList = $arrowsDivSelected.querySelectorAll('.fa-arrow-alt-circle-up');
+  if (data.watchList[animeObjIndex].priority > priorityVal) {
+    for (var arrowIndex = 0; arrowIndex < $arrowsList.length; arrowIndex++) {
+      $arrowsList[arrowIndex].className = 'fas fa-arrow-alt-circle-up';
+    }
+  }
+  for (var arrowFillIndex = 0; arrowFillIndex <= priorityVal; arrowFillIndex++) {
+    $arrowsList[arrowFillIndex].className = 'fill-arrow fas fa-arrow-alt-circle-up';
+  }
+  data.watchList[animeObjIndex].priority = priorityVal;
 
 }
