@@ -69,25 +69,36 @@ function createResult(animeObj) {
   var $arrowsDiv = document.createElement('div');
   $arrowsDiv.className = 'up-arrows flex padding-lr-third align-items-center';
 
+  var arrowsList = [];
+
   var $upArrow = document.createElement('i');
   $upArrow.className = 'fas fa-arrow-alt-circle-up';
   $upArrow.setAttribute('id', 0);
+  arrowsList.push($upArrow);
 
   var $upArrow2 = document.createElement('i');
   $upArrow2.className = 'fas fa-arrow-alt-circle-up';
   $upArrow2.setAttribute('id', 1);
+  arrowsList.push($upArrow2);
 
   var $upArrow3 = document.createElement('i');
   $upArrow3.className = 'fas fa-arrow-alt-circle-up';
   $upArrow3.setAttribute('id', 2);
+  arrowsList.push($upArrow3);
 
   var $upArrow4 = document.createElement('i');
   $upArrow4.className = 'fas fa-arrow-alt-circle-up';
   $upArrow4.setAttribute('id', 3);
+  arrowsList.push($upArrow4);
 
   var $upArrow5 = document.createElement('i');
   $upArrow5.className = 'fas fa-arrow-alt-circle-up';
   $upArrow5.setAttribute('id', 4);
+  arrowsList.push($upArrow5);
+
+  for (var arrowFillIndex = 0; arrowFillIndex <= animeObj.priority; arrowFillIndex++) {
+    arrowsList[arrowFillIndex].className = 'fill-arrow fas fa-arrow-alt-circle-up';
+  }
 
   $li.appendChild($divRow);
   $divRow.appendChild($img);
@@ -213,6 +224,7 @@ function onDomLoad(event) {
   } else if (data.view === 'watch-list') {
     renderWatchList();
   }
+
 }
 
 window.addEventListener('DOMContentLoaded', onDomLoad);
@@ -228,7 +240,6 @@ $watchListIconTop.addEventListener('click', renderWatchList);
 function renderWatchList(event) {
   clearResults();
   switchViews('watch-list');
-
   // for (var i = 0; i < data.watchList.length; i++) {
   //   $watchList.prepend(createResult(data.watchList[i]));
   // }
@@ -291,5 +302,5 @@ function setPriority(event) {
     $arrowsList[arrowFillIndex].className = 'fill-arrow fas fa-arrow-alt-circle-up';
   }
   data.watchList[animeObjIndex].priority = priorityVal;
-
+  renderWatchList();
 }
