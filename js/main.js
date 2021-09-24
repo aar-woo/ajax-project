@@ -249,7 +249,11 @@ function renderWatchList(event) {
   // for (var i = 0; i < data.watchList.length; i++) {
   //   $watchList.prepend(createResult(data.watchList[i]));
   // }
-
+  for (var i = 0; i < data.watchList.length; i++) {
+    if (data.watchList[i].priority === null) {
+      $watchList.prepend(createResult(data.watchList[i]));
+    }
+  }
   for (var priorityRank = 0; priorityRank <= 4; priorityRank++) {
     for (var watchListIndex = 0; watchListIndex < data.watchList.length; watchListIndex++) {
       if (data.watchList[watchListIndex].priority === priorityRank) {
@@ -257,11 +261,7 @@ function renderWatchList(event) {
       }
     }
   }
-  for (var i = 0; i < data.watchList.length; i++) {
-    if (data.watchList[i].priority === null) {
-      $watchList.append(createResult(data.watchList[i]));
-    }
-  }
+
   if (data.watchList.length === 0) {
     $emptyHeader.className = 'emptyHeader';
   }
