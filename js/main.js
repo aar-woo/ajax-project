@@ -33,7 +33,7 @@ function createResult(animeObj) {
 
   var $titleHeader = document.createElement('h5');
   $titleHeader.className = 'margin-0';
-  $titleHeader.textContent = 'Title;';
+  $titleHeader.textContent = 'Title:';
 
   var $title = document.createElement('p');
   $title.className = 'margin-0';
