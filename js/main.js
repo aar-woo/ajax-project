@@ -211,7 +211,6 @@ function addResult(event) {
   var resultSelected = event.target.closest('li');
   for (var i = 0; i < data.searchList.length; i++) {
     if (data.searchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
-      data.searchList[i].priority = null;
       data.watchList.push(data.searchList[i]);
     }
   }
@@ -281,7 +280,7 @@ function deleteResult(event) {
 }
 
 var $resultList = document.querySelector('.result-list');
-$watchList.addEventListener('click', setPriority);
+$watchList.addEventListener('click', adjustPriority);
 $resultList.addEventListener('click', setPriority);
 
 function setPriority(event) {
@@ -317,5 +316,9 @@ function setPriority(event) {
     $arrowsList[arrowFillIndex].className = 'fill-arrow fas fa-arrow-alt-circle-up';
   }
   data[list][animeObjIndex].priority = priorityVal;
+}
+
+function adjustPriority(event) {
+  setPriority();
   renderWatchList();
 }
