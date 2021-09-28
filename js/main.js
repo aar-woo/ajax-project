@@ -111,15 +111,14 @@ function createResult(animeObj) {
   $textCard.appendChild($synopsis);
   $li.appendChild($divBtnrow);
   $divBtnrow.appendChild($priorityDiv);
-  if (data.view === 'watch-list') {
-    $priorityDiv.appendChild($priorityHeader);
-    $priorityDiv.appendChild($arrowsDiv);
-    $arrowsDiv.appendChild($upArrow);
-    $arrowsDiv.appendChild($upArrow2);
-    $arrowsDiv.appendChild($upArrow3);
-    $arrowsDiv.appendChild($upArrow4);
-    $arrowsDiv.appendChild($upArrow5);
-  }
+
+  $priorityDiv.appendChild($priorityHeader);
+  $priorityDiv.appendChild($arrowsDiv);
+  $arrowsDiv.appendChild($upArrow);
+  $arrowsDiv.appendChild($upArrow2);
+  $arrowsDiv.appendChild($upArrow3);
+  $arrowsDiv.appendChild($upArrow4);
+  $arrowsDiv.appendChild($upArrow5);
 
   $divBtnrow.appendChild($btn);
 
