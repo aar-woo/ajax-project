@@ -119,7 +119,6 @@ function createResult(animeObj) {
   $arrowsDiv.appendChild($upArrow3);
   $arrowsDiv.appendChild($upArrow4);
   $arrowsDiv.appendChild($upArrow5);
-
   $divBtnrow.appendChild($btn);
 
   return $li;
@@ -263,7 +262,6 @@ function renderWatchList(event) {
   }
 
 }
-
 $watchList.addEventListener('click', deleteResult);
 
 function deleteResult(event) {
@@ -282,7 +280,9 @@ function deleteResult(event) {
   }
 }
 
+var $resultList = document.querySelector('.result-list');
 $watchList.addEventListener('click', setPriority);
+$resultList.addEventListener('click', setPriority);
 
 function setPriority(event) {
   if (event.target.tagName !== 'I') {
@@ -294,13 +294,21 @@ function setPriority(event) {
   var priorityVal = parseInt(event.target.getAttribute('id'));
   var $arrowsDivSelected = event.target.closest('.up-arrows');
   var $arrowsList = $arrowsDivSelected.querySelectorAll('.fa-arrow-alt-circle-up');
+  var list;
 
-  for (var i = 0; i < data.watchList.length; i++) {
-    if (data.watchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+  if (data.view === 'watch-list') {
+    list = 'watchList';
+  } else if (data.view === 'search-results') {
+    list = 'searchList';
+  }
+
+  for (var i = 0; i < data[list].length; i++) {
+    if (data[list][i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
       animeObjIndex = i;
     }
   }
-  if (data.watchList[animeObjIndex].priority > priorityVal) {
+
+  if (data[list][animeObjIndex].priority > priorityVal) {
     for (var arrowIndex = 0; arrowIndex < $arrowsList.length; arrowIndex++) {
       $arrowsList[arrowIndex].className = 'fas fa-arrow-alt-circle-up';
     }
@@ -308,6 +316,6 @@ function setPriority(event) {
   for (var arrowFillIndex = 0; arrowFillIndex <= priorityVal; arrowFillIndex++) {
     $arrowsList[arrowFillIndex].className = 'fill-arrow fas fa-arrow-alt-circle-up';
   }
-  data.watchList[animeObjIndex].priority = priorityVal;
+  data[list][animeObjIndex].priority = priorityVal;
   renderWatchList();
 }
