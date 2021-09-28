@@ -319,6 +319,6 @@ function setPriority(event) {
 }
 
 function adjustPriority(event) {
-  setPriority();
+  setPriority(event);
   renderWatchList();
 }
