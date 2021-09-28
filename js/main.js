@@ -131,8 +131,12 @@ var $searchBtnResults = document.querySelector('.search-btn.results');
 
 $searchBtn.addEventListener('click', onSearch);
 $searchBtnResults.addEventListener('click', resultsOnSearch);
+document.addEventListener('keydown', onSearch);
 
 function onSearch(event) {
+  if (event.code !== 'Enter') {
+    return;
+  }
   var searchBar;
   if (data.view === 'search-page') {
     searchBar = $searchBar;
@@ -280,8 +284,8 @@ function deleteResult(event) {
 }
 
 var $resultList = document.querySelector('.result-list');
-$watchList.addEventListener('click', adjustPriority);
 $resultList.addEventListener('click', setPriority);
+$watchList.addEventListener('click', adjustPriority);
 
 function setPriority(event) {
   if (event.target.tagName !== 'I') {
@@ -319,6 +323,9 @@ function setPriority(event) {
 }
 
 function adjustPriority(event) {
+  if (event.target.tagName !== 'I') {
+    return;
+  }
   setPriority(event);
   renderWatchList();
 }
