@@ -131,10 +131,11 @@ var $searchBtnResults = document.querySelector('.search-btn.results');
 
 $searchBtn.addEventListener('click', onSearch);
 $searchBtnResults.addEventListener('click', resultsOnSearch);
-document.addEventListener('keydown', onSearch);
+$searchBar.addEventListener('keydown', onSearch);
+$searchBarResults.addEventListener('keydown', resultsOnSearch);
 
 function onSearch(event) {
-  if (event.code !== 'Enter') {
+  if (event.code !== 'Enter' && event.target.tagName !== 'I') {
     return;
   }
   var searchBar;
@@ -162,8 +163,11 @@ function onSearch(event) {
 }
 
 function resultsOnSearch(event) {
+  if (event.code !== 'Enter' && event.target.tagName !== 'I') {
+    return;
+  }
   clearResults();
-  onSearch();
+  onSearch(event);
 }
 
 var $views = document.querySelectorAll('.view');
@@ -208,13 +212,17 @@ function searchIconClick(event) {
 $results.addEventListener('click', addResult);
 
 function addResult(event) {
-  event.preventDefault();
+  // event.preventDefault();
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
+
   var resultSelected = event.target.closest('li');
   for (var i = 0; i < data.searchList.length; i++) {
     if (data.searchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+      if (data.searchList[i].priority === undefined) {
+        data.searchList[i].priority = null;
+      }
       data.watchList.push(data.searchList[i]);
     }
   }
