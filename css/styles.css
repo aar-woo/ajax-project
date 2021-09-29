@@ -18,6 +18,11 @@ h5, {
   font-family: 'Work Sans', sans-serif;
 }
 
+input,
+button {
+  font-family: "Open-sans", sans-serif;
+}
+
 ul {
   list-style-type: none;
   display: flex;
@@ -45,6 +50,10 @@ header {
   margin-bottom: 4.5rem;
 }
 
+.margin-tb {
+  margin: 1.5rem 0;
+}
+
 .navbar,
 .header {
   background-color: #233f57;
@@ -59,19 +68,18 @@ header {
   justify-content: center;
 }
 
-.emptyHeader,
+.empty-header,
 .search {
   margin-top: 13rem;
   text-shadow: 2px 3px #233f57;
 }
 
-.searchBar {
+.search-bar {
   width: 20rem;
   height: 2rem;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   padding-left: 0.5rem;
   font-family: 'Open Sans', sans-serif;
-  border-right: none;
   border: none;
   box-shadow: 0 8px 8px -4px rgba(0, 0, 0, 0.5);
 }
@@ -79,8 +87,8 @@ header {
 .search-btn {
   color: white;
   background-color: #4c5b69;
-  border: none;
   padding: 0 0.8rem;
+  border: none;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -111,7 +119,7 @@ header {
   padding: 0 0.3rem;
 }
 
-.vectorDiv {
+.vector-div {
   width: 12rem;
   height: 2rem;
   background-color: #4c5b69;
@@ -119,16 +127,16 @@ header {
   z-index: -1;
 }
 
-.vectorDiv.watchListHeader {
+.vector-div.watch-list-header {
   width: 9rem;
 }
 
-.watchListHeader i {
+.watch-list-header i {
   font-size: x-large;
   padding-left: 0.4rem;
 }
 
-.vectorDiv::after {
+.vector-div::after {
   content: '';
   width: 0;
   height: 0;
@@ -142,10 +150,6 @@ header {
 
 .margin-0 {
   margin: 0;
-}
-
-.margin-tb {
-  margin: 1.5rem 0;
 }
 
 .margin-top-1 {
@@ -209,7 +213,6 @@ header {
 }
 
 .btn {
-  font-family: "Open Sans", sans-serif;
   color: white;
   background-color: #26a69a;
   padding: 0.2rem 0.9rem;
@@ -250,7 +253,7 @@ header {
 }
 
 @media screen and (min-width: 768px) {
-  .searchBar {
+  .search-bar {
     width: 100%;
   }
 }

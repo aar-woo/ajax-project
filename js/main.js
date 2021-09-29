@@ -1,9 +1,6 @@
-// const { Linter } = require('eslint');
-
 var $results = document.querySelector('.result-list');
 
 function createResult(animeObj) {
-
   var $li = document.createElement('li');
   $li.className = 'anime-card align-items-center';
   $li.setAttribute('id', animeObj.mal_id);
@@ -111,9 +108,9 @@ function createResult(animeObj) {
   return $li;
 }
 
-var $searchBar = document.querySelector('.searchBar');
+var $searchBar = document.querySelector('.search-bar');
 var $searchBtn = document.querySelector('.search-btn');
-var $searchBarResults = document.querySelector('.searchBar.results');
+var $searchBarResults = document.querySelector('.search-bar.results');
 var $searchBtnResults = document.querySelector('.search-btn.results');
 
 $searchBtn.addEventListener('click', onSearch);
@@ -174,7 +171,7 @@ function clearResults() {
   data.searchList = [];
   data.search = '';
   $searchBar.value = '';
-  $emptyHeader.className = 'emptyHeader hidden';
+  $emptyHeader.className = 'empty-header hidden';
   var currDomResults = document.querySelectorAll('.result-list li');
   for (var i = 0; i < currDomResults.length; i++) {
     currDomResults[i].remove();
@@ -215,6 +212,8 @@ function addResult(event) {
   renderWatchList();
 }
 
+window.addEventListener('DOMContentLoaded', onDomLoad);
+
 function onDomLoad(event) {
   switchViews(data.view);
   if (data.view === 'search-results') {
@@ -225,15 +224,12 @@ function onDomLoad(event) {
   } else if (data.view === 'watch-list') {
     renderWatchList();
   }
-
 }
-
-window.addEventListener('DOMContentLoaded', onDomLoad);
 
 var $watchListIcon = document.querySelector('.navbar .fa-list-alt');
 var $watchListIconTop = document.querySelector('.navbar-top .fa-list-alt');
 var $watchList = document.querySelector('.watch-list');
-var $emptyHeader = document.querySelector('.emptyHeader');
+var $emptyHeader = document.querySelector('.empty-header');
 
 $watchListIcon.addEventListener('click', renderWatchList);
 $watchListIconTop.addEventListener('click', renderWatchList);
@@ -255,9 +251,8 @@ function renderWatchList(event) {
     }
   }
   if (data.watchList.length === 0) {
-    $emptyHeader.className = 'emptyHeader';
+    $emptyHeader.className = 'empty-header';
   }
-
 }
 $watchList.addEventListener('click', deleteResult);
 
@@ -273,7 +268,7 @@ function deleteResult(event) {
     }
   }
   if (data.watchList.length === 0) {
-    $emptyHeader.className = 'emptyHeader';
+    $emptyHeader.className = 'empty-header';
   }
 }
 

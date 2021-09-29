@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Anime Log">
   <meta property="og:description" content="A web application to help anime enthusiasts organize a list of anime to watch.">
-  <meta property="og:image" content="blob:https://imgur.com/4321874d-2a03-4b00-8fe9-99a727015b61">
+  <meta property="og:image" content="https://imgur.com/a/fRJDLUP">
   <meta property="og:url" content="https://aar-woo.github.io/anime-log/">
   <title>Anime-Log</title>
-  <link rel="icon" href="images/fmabicon.ico">
+  <link rel="icon" href="images/fmab-icon.ico">
   <link rel="stylesheet" crossorigin="anonymous"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
@@ -52,75 +52,44 @@
           <div class="row justify-center">
             <h1>Search Anime:</h1>
           </div>
-          <div class="row justify-center">
-            <input type="text" class="searchBar">
-            <button class="search-btn">
-              <a href="#"><i class="fas fa-search"></i></a>
-            </button>
-          </div>
+          <form>
+            <div class="row justify-center">
+              <input type="text" class="search-bar">
+              <button class="search-btn">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-
-      <!-- Search results -->
       <div data-view="search-results" class="view hidden">
         <div class="row">
-          <div class="vectorDiv margin-tb">
+          <div class="vector-div margin-tb">
             <h3 class="margin-0 search-heading">Search Results for:</h3>
           </div>
         </div>
-        <div class="row justify-center ">
-          <input type="text" class="searchBar results">
-          <button class="search-btn results">
-            <a href="#"><i class="fas fa-search"></i></a>
-          </button>
-        </div>
+        <form>
+          <div class="row justify-center ">
+            <input type="text" class="search-bar results">
+            <button class="search-btn results">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
         <ul class="result-list wrap margin-tb">
-
         </ul>
       </div>
-
-      <!-- Watch List -->
       <div data-view="watch-list" class="view">
         <div class="row">
-          <div class="vectorDiv flex watchListHeader align-items-center margin-top-1">
+          <div class="vector-div flex watch-list-header align-items-center margin-top-1">
             <h3 class="margin-0 search-heading">Watch List</h3>
             <i class="fas fa-list-alt"></i>
           </div>
         </div>
         <ul class="watch-list wrap">
-          <h2 class="emptyHeader hidden">There's no way this is empty.</h2>
-
-          <!-- <li class="anime-card align-items-center" id="666">
-            <div class="row width-100"><img
-                src="https://cdn.myanimelist.net/images/anime/1171/106036.jpg?s=09307fb4b030b5e6f578c6ba6cbf84ab" class="img">
-              <div class="text-card">
-                <h5 class="margin-0">Title;</h5>
-                <p class="margin-0">JoJo no Kimyou na Bouken</p>
-                <h5 class="margin-top-half">Synopsis:</h5>
-                <p class="margin-0">Kujo Jotaro is a normal, popular Japanese high-schooler, until he thinks that he is possessed
-                  by a spirit, and locks himself in prison. After seeing his grandfather, Joseph Joestar, and fighting Josep...
-                </p>
-              </div>
-            </div>
-            <div class="row justify-between margin-top-half">
-              <div class="flex align-items-center">
-                <h3 class="margin-0">Priority:</h3>
-                <div class = "up-arrows flex padding-lr-third align-items-center">
-                  <i class="fas fa-arrow-alt-circle-up"></i>
-                  <i class="fas fa-arrow-alt-circle-up"></i>
-                  <i class="fas fa-arrow-alt-circle-up"></i>
-                  <i class="fas fa-arrow-alt-circle-up"></i>
-                  <i class="fas fa-arrow-alt-circle-up"></i>
-                </div>
-              </div>
-              <button class="btn remove-btn">REMOVE</button>
-            </div>
-          </li> -->
-
+          <h2 class="empty-header hidden">There's no way this is empty.</h2>
         </ul>
       </div>
-
-      <!-- Bottom Navbar -->
       <div class="navbar">
         <div class="container">
           <div class="row">
