@@ -1,18 +1,5 @@
 // const { Linter } = require('eslint');
 
-/*
-
-  <div class="flex align-items-center">
-    <h4 class="margin-0">Priority:</h4>
-    <ul class="up-arrows padding-lr-half">
-      <i class="fas fa-arrow-alt-circle-up"></i>
-      <i class="fas fa-arrow-alt-circle-up"></i>
-      <i class="fas fa-arrow-alt-circle-up"></i>
-      <i class="fas fa-arrow-alt-circle-up"></i>
-      <i class="fas fa-arrow-alt-circle-up"></i>
-    </ul>
-  </div>
-   */
 var $results = document.querySelector('.result-list');
 
 function createResult(animeObj) {
@@ -212,7 +199,6 @@ function searchIconClick(event) {
 $results.addEventListener('click', addResult);
 
 function addResult(event) {
-  // event.preventDefault();
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
