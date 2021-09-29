@@ -1,18 +1,5 @@
 // const { Linter } = require('eslint');
 
-/*
-
-  <div class="flex align-items-center">
-    <h4 class="margin-0">Priority:</h4>
-    <ul class="up-arrows padding-lr-half">
-      <i class="fas fa-arrow-alt-circle-up"></i>
-      <i class="fas fa-arrow-alt-circle-up"></i>
-      <i class="fas fa-arrow-alt-circle-up"></i>
-      <i class="fas fa-arrow-alt-circle-up"></i>
-      <i class="fas fa-arrow-alt-circle-up"></i>
-    </ul>
-  </div>
-   */
 var $results = document.querySelector('.result-list');
 
 function createResult(animeObj) {
@@ -111,16 +98,14 @@ function createResult(animeObj) {
   $textCard.appendChild($synopsis);
   $li.appendChild($divBtnrow);
   $divBtnrow.appendChild($priorityDiv);
-  if (data.view === 'watch-list') {
-    $priorityDiv.appendChild($priorityHeader);
-    $priorityDiv.appendChild($arrowsDiv);
-    $arrowsDiv.appendChild($upArrow);
-    $arrowsDiv.appendChild($upArrow2);
-    $arrowsDiv.appendChild($upArrow3);
-    $arrowsDiv.appendChild($upArrow4);
-    $arrowsDiv.appendChild($upArrow5);
-  }
 
+  $priorityDiv.appendChild($priorityHeader);
+  $priorityDiv.appendChild($arrowsDiv);
+  $arrowsDiv.appendChild($upArrow);
+  $arrowsDiv.appendChild($upArrow2);
+  $arrowsDiv.appendChild($upArrow3);
+  $arrowsDiv.appendChild($upArrow4);
+  $arrowsDiv.appendChild($upArrow5);
   $divBtnrow.appendChild($btn);
 
   return $li;
@@ -133,8 +118,13 @@ var $searchBtnResults = document.querySelector('.search-btn.results');
 
 $searchBtn.addEventListener('click', onSearch);
 $searchBtnResults.addEventListener('click', resultsOnSearch);
+$searchBar.addEventListener('keydown', onSearch);
+$searchBarResults.addEventListener('keydown', resultsOnSearch);
 
 function onSearch(event) {
+  if (event.code !== 'Enter' && event.target.tagName !== 'I') {
+    return;
+  }
   var searchBar;
   if (data.view === 'search-page') {
     searchBar = $searchBar;
@@ -160,8 +150,11 @@ function onSearch(event) {
 }
 
 function resultsOnSearch(event) {
+  if (event.code !== 'Enter' && event.target.tagName !== 'I') {
+    return;
+  }
   clearResults();
-  onSearch();
+  onSearch(event);
 }
 
 var $views = document.querySelectorAll('.view');
@@ -206,14 +199,16 @@ function searchIconClick(event) {
 $results.addEventListener('click', addResult);
 
 function addResult(event) {
-  event.preventDefault();
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
+
   var resultSelected = event.target.closest('li');
   for (var i = 0; i < data.searchList.length; i++) {
     if (data.searchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
-      data.searchList[i].priority = null;
+      if (data.searchList[i].priority === undefined) {
+        data.searchList[i].priority = null;
+      }
       data.watchList.push(data.searchList[i]);
     }
   }
@@ -264,7 +259,6 @@ function renderWatchList(event) {
   }
 
 }
-
 $watchList.addEventListener('click', deleteResult);
 
 function deleteResult(event) {
@@ -283,7 +277,9 @@ function deleteResult(event) {
   }
 }
 
-$watchList.addEventListener('click', setPriority);
+var $resultList = document.querySelector('.result-list');
+$resultList.addEventListener('click', setPriority);
+$watchList.addEventListener('click', adjustPriority);
 
 function setPriority(event) {
   if (event.target.tagName !== 'I') {
@@ -295,13 +291,21 @@ function setPriority(event) {
   var priorityVal = parseInt(event.target.getAttribute('id'));
   var $arrowsDivSelected = event.target.closest('.up-arrows');
   var $arrowsList = $arrowsDivSelected.querySelectorAll('.fa-arrow-alt-circle-up');
+  var list;
 
-  for (var i = 0; i < data.watchList.length; i++) {
-    if (data.watchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+  if (data.view === 'watch-list') {
+    list = 'watchList';
+  } else if (data.view === 'search-results') {
+    list = 'searchList';
+  }
+
+  for (var i = 0; i < data[list].length; i++) {
+    if (data[list][i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
       animeObjIndex = i;
     }
   }
-  if (data.watchList[animeObjIndex].priority > priorityVal) {
+
+  if (data[list][animeObjIndex].priority > priorityVal) {
     for (var arrowIndex = 0; arrowIndex < $arrowsList.length; arrowIndex++) {
       $arrowsList[arrowIndex].className = 'fas fa-arrow-alt-circle-up';
     }
@@ -309,6 +313,13 @@ function setPriority(event) {
   for (var arrowFillIndex = 0; arrowFillIndex <= priorityVal; arrowFillIndex++) {
     $arrowsList[arrowFillIndex].className = 'fill-arrow fas fa-arrow-alt-circle-up';
   }
-  data.watchList[animeObjIndex].priority = priorityVal;
+  data[list][animeObjIndex].priority = priorityVal;
+}
+
+function adjustPriority(event) {
+  if (event.target.tagName !== 'I') {
+    return;
+  }
+  setPriority(event);
   renderWatchList();
 }

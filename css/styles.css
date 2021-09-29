@@ -32,6 +32,19 @@ input {
   outline: none;
 }
 
+header {
+  position: fixed;
+  height: 70px;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.margin-tb-4 {
+  margin-top: 4.5rem;
+  margin-bottom: 4.5rem;
+}
+
 .navbar,
 .header {
   background-color: #233f57;
@@ -48,7 +61,7 @@ input {
 
 .emptyHeader,
 .search {
-  margin-top: 7rem;
+  margin-top: 13rem;
   text-shadow: 2px 3px #233f57;
 }
 
@@ -103,6 +116,7 @@ input {
   height: 2rem;
   background-color: #4c5b69;
   position: relative;
+  z-index: -1;
 }
 
 .vectorDiv.watchListHeader {
@@ -123,6 +137,7 @@ input {
   position: absolute;
   top: 0;
   left: 100%;
+  z-index: -1;
 }
 
 .margin-0 {
@@ -131,6 +146,10 @@ input {
 
 .margin-tb {
   margin: 1.5rem 0;
+}
+
+.margin-top-1 {
+  margin-top: 1rem;
 }
 
 .search-heading {
@@ -155,6 +174,7 @@ input {
 }
 
 .text-card {
+  font-size: 1.5rem;
   padding: 0.5rem;
   margin-left: 0.5rem;
   width: 60%;
