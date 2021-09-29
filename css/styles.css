@@ -59,13 +59,13 @@ header {
   justify-content: center;
 }
 
-.emptyHeader,
+.empty-header,
 .search {
   margin-top: 13rem;
   text-shadow: 2px 3px #233f57;
 }
 
-.searchBar {
+.search-bar {
   width: 20rem;
   height: 2rem;
   font-size: 1.4rem;
@@ -111,7 +111,7 @@ header {
   padding: 0 0.3rem;
 }
 
-.vectorDiv {
+.vector-div {
   width: 12rem;
   height: 2rem;
   background-color: #4c5b69;
@@ -119,16 +119,16 @@ header {
   z-index: -1;
 }
 
-.vectorDiv.watchListHeader {
+.vector-div.watch-list-header {
   width: 9rem;
 }
 
-.watchListHeader i {
+.watch-list-header i {
   font-size: x-large;
   padding-left: 0.4rem;
 }
 
-.vectorDiv::after {
+.vector-div::after {
   content: '';
   width: 0;
   height: 0;
@@ -250,7 +250,7 @@ header {
 }
 
 @media screen and (min-width: 768px) {
-  .searchBar {
+  .search-bar {
     width: 100%;
   }
 }
