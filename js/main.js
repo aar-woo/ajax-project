@@ -113,16 +113,17 @@ var $searchBtn = document.querySelector('.search-btn');
 var $searchBarResults = document.querySelector('.search-bar.results');
 var $searchBtnResults = document.querySelector('.search-btn.results');
 var $loadBar = document.querySelector('.lds-facebook');
+var $noResultsHeader = document.querySelector('.no-results-header');
 
 $searchBtn.addEventListener('click', onSearch);
 $searchBtnResults.addEventListener('click', resultsOnSearch);
-$searchBar.addEventListener('keydown', onSearch);
-$searchBarResults.addEventListener('keydown', resultsOnSearch);
+// $searchBar.addEventListener('keydown', onSearch);
+// $searchBarResults.addEventListener('keydown', resultsOnSearch);
 
 function onSearch(event) {
-  if (event.code !== 'Enter' && event.target.tagName !== 'I') {
-    return;
-  }
+  // if (event.code !== 'Enter' && event.target.tagName !== 'I' && event.target.tagName !== 'BUTTON') {
+  //   return;
+  // }
   $loadBar.className = 'lds-facebook';
   var searchBar;
   if (data.view === 'search-page') {
@@ -145,14 +146,20 @@ function onSearch(event) {
     }
   });
   jikanReq.send();
+  console.log('before jikanreq send');
+
   switchViews('search-results');
   $searchBarResults.value = data.search;
+
+  // if (jikanReq.status < 200 || jikanReq.status >= 300) { // display no results header
+  //   $noResultsHeader.className = 'no-results-header';
+  // }
 }
 
 function resultsOnSearch(event) {
-  if (event.code !== 'Enter' && event.target.tagName !== 'I') {
-    return;
-  }
+  // if (event.code !== 'Enter' && event.target.tagName !== 'I' && event.target.tagName !== 'BUTTON') {
+  //   return;
+  // }
   clearResults();
   onSearch(event);
 }
@@ -218,6 +225,7 @@ function addResult(event) {
 window.addEventListener('DOMContentLoaded', onDomLoad);
 
 function onDomLoad(event) {
+  console.log('ondomload func');
   switchViews(data.view);
   if (data.view === 'search-results') {
     $searchBarResults.value = data.search;
