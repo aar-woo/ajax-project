@@ -73,6 +73,10 @@ header {
   justify-content: center;
 }
 
+.empty-header {
+  font-size: 1.2rem;
+}
+
 .empty-header,
 .search {
   margin-top: 13rem;
@@ -125,19 +129,19 @@ header {
 }
 
 .vector-div {
-  width: 12rem;
-  height: 2rem;
+  width: 10rem;
+  height: 1.5rem;
   background-color: #4c5b69;
   position: relative;
   z-index: -1;
 }
 
 .vector-div.watch-list-header {
-  width: 9rem;
+  width: 7.5rem;
 }
 
 .watch-list-header i {
-  font-size: x-large;
+  font-size: large;
   padding-left: 0.4rem;
 }
 
@@ -145,8 +149,8 @@ header {
   content: '';
   width: 0;
   height: 0;
-  border-top: 2rem solid #4c5b69;
-  border-right: 2rem solid transparent;
+  border-top: 1.5rem solid #4c5b69;
+  border-right: 1.5rem solid transparent;
   position: absolute;
   top: 0;
   left: 100%;
@@ -162,8 +166,8 @@ header {
 }
 
 .search-heading {
-  margin: 0 0.4rem;
-  font-size: 1.3rem;
+  margin-left: 0.4rem;
+  font-size: 1rem;
   font-style: italic;
 }
 
@@ -238,31 +242,55 @@ header {
   color: #ffbf1e;
 }
 
-@media screen and (min-width: 768px) {
-  .header {
-    text-align: left;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .navbar {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .navbar-top {
-    display: flex;
-  }
-}
-
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 400px) {
   .search-bar {
     width: 100%;
   }
 }
 
 @media screen and (min-width: 768px) {
+  .header {
+    text-align: left;
+  }
+
+  .empty-header {
+    font-size: 1.5rem;
+  }
+
+  .navbar-top {
+    display: flex;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  .search-btn {
+    padding: 0 1.2rem;
+  }
+
+  .search-heading {
+    font-size: 1.3rem;
+  }
+
+  .vector-div {
+    height: 2rem;
+    width: 12rem;
+  }
+
+  .vector-div.watch-list-header {
+    width: 9rem;
+  }
+
+  .watch-list-header i {
+    font-size: x-large;
+  }
+
+  .vector-div::after {
+    border-top: 2rem solid #4c5b69;
+    border-right: 2rem solid transparent;
+  }
+
   .text-card {
     width: 100%;
   }
