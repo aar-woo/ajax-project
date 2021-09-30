@@ -73,13 +73,14 @@ header {
   justify-content: center;
 }
 
-.empty-header {
-  font-size: 1.2rem;
-}
-
 .network-error-header,
 .no-results-header,
-.empty-header,
+.empty-header {
+  margin-top: 7rem;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px #1c3449;
+}
+
 .search {
   margin-top: 13rem;
   text-shadow: 2px 3px #233f57;
@@ -300,7 +301,10 @@ header {
     text-align: left;
   }
 
+  .network-error-header,
+  .no-results-header,
   .empty-header {
+    margin-top: 10rem;
     font-size: 1.5rem;
   }
 

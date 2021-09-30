@@ -151,10 +151,13 @@ function onSearch(event) {
   switchViews('search-results');
   $searchBarResults.value = data.search;
 
+  jikanReq.onerror = function () {
+    $loadBar.className = 'lds-facebook hidden';
+    $networkErrorHeader.className = 'network-error-header text-align-center';
+  };
+
   jikanReq.onload = function () {
-    if (jikanReq.status >= 500) {
-      $networkErrorHeader.className = 'network-error-header';
-    } else if (jikanReq.status < 200 || jikanReq.status >= 300) { // display no results header
+    if (jikanReq.status < 200 || jikanReq.status >= 300) { // display no results header
       $noResultsHeader.className = 'no-results-header';
     }
   };
@@ -186,6 +189,8 @@ function clearResults() {
   data.search = '';
   $searchBar.value = '';
   $emptyHeader.className = 'empty-header hidden';
+  $noResultsHeader.className = 'no-results-header hidden';
+  $networkErrorHeader.className = 'network-error-header text-align-center hidden';
   var currDomResults = document.querySelectorAll('.result-list li');
   for (var i = 0; i < currDomResults.length; i++) {
     currDomResults[i].remove();
