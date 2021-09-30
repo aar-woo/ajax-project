@@ -140,6 +140,9 @@ function onSearch(event) {
   jikanReq.responseType = 'json';
   jikanReq.addEventListener('load', function () {
     $loadBar.className = 'lds-facebook hidden';
+    if (jikanReq.status < 200 || jikanReq.status >= 300) {
+      $noResultsHeader.className = 'no-results-header';
+    }
     var searchList = jikanReq.response.results;
     for (var result = 0; result < 5; result++) {
       var searchResult = createResult(searchList[result]);
@@ -151,16 +154,11 @@ function onSearch(event) {
   switchViews('search-results');
   $searchBarResults.value = data.search;
 
-  jikanReq.onerror = function () {
+  jikanReq.addEventListener('error', function () {
     $loadBar.className = 'lds-facebook hidden';
     $networkErrorHeader.className = 'network-error-header text-align-center';
-  };
+  });
 
-  jikanReq.onload = function () {
-    if (jikanReq.status < 200 || jikanReq.status >= 300) { // display no results header
-      $noResultsHeader.className = 'no-results-header';
-    }
-  };
 }
 
 function resultsOnSearch(event) {
