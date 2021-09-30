@@ -8,7 +8,7 @@ var data = {
 
 var previousDataObj = localStorage.getItem('local-data-object');
 
-if (previousDataObj.watchList !== null) {
+if (previousDataObj !== null) {
   var previousData = JSON.parse(previousDataObj);
   data = previousData;
 }

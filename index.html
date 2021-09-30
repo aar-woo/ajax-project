@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Anime Log">
-  <meta property="og:description" content="A web application to help anime enthusiasts organize a list of anime to watch.">
+  <meta property="og:description" content="A web application to help anime enthusiasts search anime, organize a list of anime to watch, and set priority within their watch list.">
   <meta property="og:image" content="https://imgur.com/a/fRJDLUP">
   <meta property="og:url" content="https://aar-woo.github.io/anime-log/">
   <title>Anime-Log</title>
@@ -77,6 +77,13 @@
           </div>
         </form>
         <ul class="result-list wrap margin-tb">
+          <div class="lds-facebook hidden">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <h2 class="no-results-header hidden">No results found ):</h2>
+          <h2 class="network-error-header text-align-center hidden">Sorry, there was an error connecting to the network!</h2>
         </ul>
       </div>
       <div data-view="watch-list" class="view">

@@ -18,6 +18,11 @@ h5, {
   font-family: 'Work Sans', sans-serif;
 }
 
+a,
+button {
+  cursor: pointer;
+}
+
 input,
 button {
   font-family: "Open-sans", sans-serif;
@@ -68,7 +73,14 @@ header {
   justify-content: center;
 }
 
-.empty-header,
+.network-error-header,
+.no-results-header,
+.empty-header {
+  margin-top: 7rem;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px #1c3449;
+}
+
 .search {
   margin-top: 13rem;
   text-shadow: 2px 3px #233f57;
@@ -120,19 +132,19 @@ header {
 }
 
 .vector-div {
-  width: 12rem;
-  height: 2rem;
+  width: 10rem;
+  height: 1.5rem;
   background-color: #4c5b69;
   position: relative;
   z-index: -1;
 }
 
 .vector-div.watch-list-header {
-  width: 9rem;
+  width: 7.5rem;
 }
 
 .watch-list-header i {
-  font-size: x-large;
+  font-size: large;
   padding-left: 0.4rem;
 }
 
@@ -140,8 +152,8 @@ header {
   content: '';
   width: 0;
   height: 0;
-  border-top: 2rem solid #4c5b69;
-  border-right: 2rem solid transparent;
+  border-top: 1.5rem solid #4c5b69;
+  border-right: 1.5rem solid transparent;
   position: absolute;
   top: 0;
   left: 100%;
@@ -157,8 +169,8 @@ header {
 }
 
 .search-heading {
-  margin: 0 0.4rem;
-  font-size: 1.3rem;
+  margin-left: 0.4rem;
+  font-size: 1rem;
   font-style: italic;
 }
 
@@ -219,7 +231,6 @@ header {
   border: none;
   border-radius: 3px;
   box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
 }
 
 .remove-btn {
@@ -234,31 +245,103 @@ header {
   color: #ffbf1e;
 }
 
-@media screen and (min-width: 768px) {
-  .header {
-    text-align: left;
+.lds-facebook {
+  margin-top: 9rem;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #fff;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+
+  50%,
+  100% {
+    top: 24px;
+    height: 32px;
   }
 }
 
-@media screen and (min-width: 768px) {
-  .navbar {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .navbar-top {
-    display: flex;
-  }
-}
-
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 400px) {
   .search-bar {
     width: 100%;
   }
 }
 
 @media screen and (min-width: 768px) {
+  .header {
+    text-align: left;
+  }
+
+  .network-error-header,
+  .no-results-header,
+  .empty-header {
+    margin-top: 10rem;
+    font-size: 1.5rem;
+  }
+
+  .navbar-top {
+    display: flex;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  .search-btn {
+    padding: 0 1.2rem;
+  }
+
+  .search-heading {
+    font-size: 1.3rem;
+  }
+
+  .vector-div {
+    height: 2rem;
+    width: 12rem;
+  }
+
+  .vector-div.watch-list-header {
+    width: 9rem;
+  }
+
+  .watch-list-header i {
+    font-size: x-large;
+  }
+
+  .vector-div::after {
+    border-top: 2rem solid #4c5b69;
+    border-right: 2rem solid transparent;
+  }
+
   .text-card {
     width: 100%;
   }

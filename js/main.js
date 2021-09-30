@@ -112,6 +112,9 @@ var $searchBar = document.querySelector('.search-bar');
 var $searchBtn = document.querySelector('.search-btn');
 var $searchBarResults = document.querySelector('.search-bar.results');
 var $searchBtnResults = document.querySelector('.search-btn.results');
+var $loadBar = document.querySelector('.lds-facebook');
+var $noResultsHeader = document.querySelector('.no-results-header');
+var $networkErrorHeader = document.querySelector('.network-error-header');
 
 $searchBtn.addEventListener('click', onSearch);
 $searchBtnResults.addEventListener('click', resultsOnSearch);
@@ -119,9 +122,11 @@ $searchBar.addEventListener('keydown', onSearch);
 $searchBarResults.addEventListener('keydown', resultsOnSearch);
 
 function onSearch(event) {
-  if (event.code !== 'Enter' && event.target.tagName !== 'I') {
+  if (event.code !== 'Enter' && event.target.tagName !== 'I' && event.target.tagName !== 'BUTTON') {
     return;
   }
+  event.preventDefault();
+  $loadBar.className = 'lds-facebook';
   var searchBar;
   if (data.view === 'search-page') {
     searchBar = $searchBar;
@@ -134,6 +139,10 @@ function onSearch(event) {
   jikanReq.open('GET', 'https://api.jikan.moe/v3/search/anime?q=' + data.search);
   jikanReq.responseType = 'json';
   jikanReq.addEventListener('load', function () {
+    $loadBar.className = 'lds-facebook hidden';
+    if (jikanReq.status < 200 || jikanReq.status >= 300) {
+      $noResultsHeader.className = 'no-results-header';
+    }
     var searchList = jikanReq.response.results;
     for (var result = 0; result < 5; result++) {
       var searchResult = createResult(searchList[result]);
@@ -144,10 +153,16 @@ function onSearch(event) {
   jikanReq.send();
   switchViews('search-results');
   $searchBarResults.value = data.search;
+
+  jikanReq.addEventListener('error', function () {
+    $loadBar.className = 'lds-facebook hidden';
+    $networkErrorHeader.className = 'network-error-header text-align-center';
+  });
+
 }
 
 function resultsOnSearch(event) {
-  if (event.code !== 'Enter' && event.target.tagName !== 'I') {
+  if (event.code !== 'Enter' && event.target.tagName !== 'I' && event.target.tagName !== 'BUTTON') {
     return;
   }
   clearResults();
@@ -172,6 +187,8 @@ function clearResults() {
   data.search = '';
   $searchBar.value = '';
   $emptyHeader.className = 'empty-header hidden';
+  $noResultsHeader.className = 'no-results-header hidden';
+  $networkErrorHeader.className = 'network-error-header text-align-center hidden';
   var currDomResults = document.querySelectorAll('.result-list li');
   for (var i = 0; i < currDomResults.length; i++) {
     currDomResults[i].remove();
@@ -199,7 +216,6 @@ function addResult(event) {
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
-
   var resultSelected = event.target.closest('li');
   for (var i = 0; i < data.searchList.length; i++) {
     if (data.searchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
@@ -254,6 +270,7 @@ function renderWatchList(event) {
     $emptyHeader.className = 'empty-header';
   }
 }
+
 $watchList.addEventListener('click', deleteResult);
 
 function deleteResult(event) {
