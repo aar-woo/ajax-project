@@ -77,6 +77,7 @@ header {
   font-size: 1.2rem;
 }
 
+.network-error-header,
 .no-results-header,
 .empty-header,
 .search {

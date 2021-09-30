@@ -114,6 +114,7 @@ var $searchBarResults = document.querySelector('.search-bar.results');
 var $searchBtnResults = document.querySelector('.search-btn.results');
 var $loadBar = document.querySelector('.lds-facebook');
 var $noResultsHeader = document.querySelector('.no-results-header');
+var $networkErrorHeader = document.querySelector('.network-error-header');
 
 $searchBtn.addEventListener('click', onSearch);
 $searchBtnResults.addEventListener('click', resultsOnSearch);
@@ -151,7 +152,9 @@ function onSearch(event) {
   $searchBarResults.value = data.search;
 
   jikanReq.onload = function () {
-    if (jikanReq.onload.status < 200 || jikanReq.status >= 300) { // display no results header
+    if (jikanReq.status >= 500) {
+      $networkErrorHeader.className = 'network-error-header';
+    } else if (jikanReq.status < 200 || jikanReq.status >= 300) { // display no results header
       $noResultsHeader.className = 'no-results-header';
     }
   };
@@ -207,11 +210,9 @@ function searchIconClick(event) {
 $results.addEventListener('click', addResult);
 
 function addResult(event) {
-
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
-
   var resultSelected = event.target.closest('li');
   for (var i = 0; i < data.searchList.length; i++) {
     if (data.searchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
