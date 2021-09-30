@@ -18,6 +18,11 @@ h5, {
   font-family: 'Work Sans', sans-serif;
 }
 
+a,
+button {
+  cursor: pointer;
+}
+
 input,
 button {
   font-family: "Open-sans", sans-serif;
@@ -219,7 +224,6 @@ header {
   border: none;
   border-radius: 3px;
   box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
 }
 
 .remove-btn {
