@@ -112,6 +112,7 @@ var $searchBar = document.querySelector('.search-bar');
 var $searchBtn = document.querySelector('.search-btn');
 var $searchBarResults = document.querySelector('.search-bar.results');
 var $searchBtnResults = document.querySelector('.search-btn.results');
+var $loadBar = document.querySelector('.lds-facebook');
 
 $searchBtn.addEventListener('click', onSearch);
 $searchBtnResults.addEventListener('click', resultsOnSearch);
@@ -122,6 +123,7 @@ function onSearch(event) {
   if (event.code !== 'Enter' && event.target.tagName !== 'I') {
     return;
   }
+  $loadBar.className = 'lds-facebook';
   var searchBar;
   if (data.view === 'search-page') {
     searchBar = $searchBar;
@@ -134,6 +136,7 @@ function onSearch(event) {
   jikanReq.open('GET', 'https://api.jikan.moe/v3/search/anime?q=' + data.search);
   jikanReq.responseType = 'json';
   jikanReq.addEventListener('load', function () {
+    $loadBar.className = 'lds-facebook hidden';
     var searchList = jikanReq.response.results;
     for (var result = 0; result < 5; result++) {
       var searchResult = createResult(searchList[result]);
@@ -254,6 +257,7 @@ function renderWatchList(event) {
     $emptyHeader.className = 'empty-header';
   }
 }
+
 $watchList.addEventListener('click', deleteResult);
 
 function deleteResult(event) {
