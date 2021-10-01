@@ -38,7 +38,7 @@ function createResult(animeObj) {
   if (data.view === 'search-results') {
     $btn.className = 'btn add-btn';
     $btn.textContent = 'ADD';
-  } else if (data.view === 'watch-list') {
+  } else if (data.view === 'watch-list' || data.view === 'in-progress-list') {
     $btn.className = 'btn remove-btn';
     $btn.textContent = 'REMOVE';
     var $watchBtn = document.createElement('button');
@@ -113,13 +113,11 @@ function createResult(animeObj) {
   $arrowsDiv.appendChild($upArrow3);
   $arrowsDiv.appendChild($upArrow4);
   $arrowsDiv.appendChild($upArrow5);
-  if (data.view !== 'in-progress-list') {
-    $divBtnrow.appendChild($btnCol);
-    if (data.view === 'watch-list') {
-      $btnCol.appendChild($watchBtn);
-    }
-    $btnCol.appendChild($btn);
+  $divBtnrow.appendChild($btnCol);
+  if (data.view === 'watch-list') {
+    $btnCol.appendChild($watchBtn);
   }
+  $btnCol.appendChild($btn);
 
   return $li;
 }
@@ -362,24 +360,50 @@ function renderAnimeList(view) {
   }
 }
 
-$watchList.addEventListener('click', watchListOptions);
+$watchList.addEventListener('click', animeListOptions);
+$inProgressList.addEventListener('click', animeListOptions);
 
-function watchListOptions(event) {
+// function watchListOptions(event) {
+//   if (event.target.tagName !== 'BUTTON') {
+//     return;
+//   }
+
+//   var resultSelected = event.target.closest('li');
+//   for (var i = 0; i < data.watchList.length; i++) {
+//     if (data.watchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+//       if (event.target.matches('.watch-btn')) {
+//         data.inProgressList.push(data.watchList[i]);
+//       }
+//       resultSelected.remove();
+//       data.watchList.splice(i, 1);
+//     }
+//   }
+//   if (data.watchList.length === 0) {
+//     $emptyHeader.className = 'empty-header';
+//   }
+// }
+
+function animeListOptions(event) {
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
-
+  var dataList;
+  if (data.view === 'watch-list') {
+    dataList = data.watchList;
+  } else if (data.view === 'in-progress-list') {
+    dataList = data.inProgressList;
+  }
   var resultSelected = event.target.closest('li');
-  for (var i = 0; i < data.watchList.length; i++) {
-    if (data.watchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+  for (var i = 0; i < dataList.length; i++) {
+    if (dataList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
       if (event.target.matches('.watch-btn')) {
-        data.inProgressList.push(data.watchList[i]);
+        data.inProgressList.push(dataList[i]);
       }
       resultSelected.remove();
-      data.watchList.splice(i, 1);
+      dataList.splice(i, 1);
     }
   }
-  if (data.watchList.length === 0) {
+  if (dataList.length === 0) {
     $emptyHeader.className = 'empty-header';
   }
 }
