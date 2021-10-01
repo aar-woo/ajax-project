@@ -245,17 +245,17 @@ function addResult(event) {
 
 window.addEventListener('DOMContentLoaded', onDomLoad);
 
-function onDomLoad(event) {
-  switchViews(data.view);
-  if (data.view === 'search-results') {
-    $searchBarResults.value = data.search;
-    for (var i = 0; i < data.searchList.length; i++) {
-      $results.appendChild(createResult(data.searchList[i]));
-    }
-  } else if (data.view === 'watch-list') {
-    renderWatchList();
-  }
-}
+// function onDomLoad(event) {
+//   switchViews(data.view);
+//   if (data.view === 'search-results') {
+//     $searchBarResults.value = data.search;
+//     for (var i = 0; i < data.searchList.length; i++) {
+//       $results.appendChild(createResult(data.searchList[i]));
+//     }
+//   } else if (data.view === 'watch-list') {
+//     renderWatchList();
+//   }
+// }
 
 var $watchListIcon = document.querySelector('.navbar .fa-list-alt');
 var $watchListIconTop = document.querySelector('.navbar-top .fa-list-alt');
