@@ -19,6 +19,7 @@ h5, {
 }
 
 a,
+i,
 button {
   cursor: pointer;
 }
@@ -73,6 +74,11 @@ header {
   justify-content: center;
 }
 
+.justify-end {
+  justify-content: flex-end;
+}
+
+.in-progress-empty-header,
 .network-error-header,
 .no-results-header,
 .empty-header {
@@ -143,6 +149,11 @@ header {
   width: 7.5rem;
 }
 
+.vector-div.in-progress-header {
+  width: 8rem;
+}
+
+.in-progress-header i,
 .watch-list-header i {
   font-size: large;
   padding-left: 0.4rem;
@@ -225,9 +236,11 @@ header {
 }
 
 .btn {
+  font-size: 0.7rem;
   color: white;
   background-color: #26a69a;
-  padding: 0.2rem 0.9rem;
+  padding: 0 0.5rem;
+  margin-left: 0.4rem;
   border: none;
   border-radius: 3px;
   box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.5);
@@ -301,6 +314,7 @@ header {
     text-align: left;
   }
 
+  .in-progress-empty-header,
   .network-error-header,
   .no-results-header,
   .empty-header {
@@ -320,6 +334,11 @@ header {
     padding: 0 1.2rem;
   }
 
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.2rem 1.1rem;
+  }
+
   .search-heading {
     font-size: 1.3rem;
   }
@@ -329,10 +348,12 @@ header {
     width: 12rem;
   }
 
+  .vector-div.in-progress-header,
   .vector-div.watch-list-header {
     width: 9rem;
   }
 
+  .in-progress-header i,
   .watch-list-header i {
     font-size: x-large;
   }

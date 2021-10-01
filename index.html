@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Anime Log">
   <meta property="og:description" content="A web application to help anime enthusiasts search anime, organize a list of anime to watch, and set priority within their watch list.">
-  <meta property="og:image" content="https://i.imgur.com/7LIdCM6.png">
+  <meta property="og:image" content="https://aar-woo.github.io/anime-log/images/thumbnail.png">
   <meta property="og:url" content="https://aar-woo.github.io/anime-log/">
   <title>Anime-Log</title>
   <link rel="icon" href="images/fmab-icon.ico">
@@ -37,6 +37,9 @@
                 </li>
                 <li class="padding-lr-1">
                   <a href="#"><i class="fas fa-list-alt"></i></a>
+                </li>
+                <li class="padding-lr-1">
+                  <a href="#"><i class="fas fa-eye"></i></a>
                 </li>
               </ul>
             </nav>
@@ -86,7 +89,7 @@
           <h2 class="network-error-header text-align-center hidden">Sorry, there was an error connecting to the network!</h2>
         </ul>
       </div>
-      <div data-view="watch-list" class="view">
+      <div data-view="watch-list" class="view hidden">
         <div class="row">
           <div class="vector-div flex watch-list-header align-items-center margin-top-1">
             <h3 class="margin-0 search-heading">Watch List</h3>
@@ -95,6 +98,17 @@
         </div>
         <ul class="watch-list wrap">
           <h2 class="empty-header hidden">There's no way this is empty.</h2>
+        </ul>
+      </div>
+      <div data-view="in-progress-list" class="view hidden">
+        <div class="row">
+          <div class="vector-div flex in-progress-header align-items-center margin-top-1">
+            <h3 class="margin-0 search-heading">In Progress</h3>
+            <i class="fas fa-eye"></i>
+          </div>
+        </div>
+        <ul class="in-progress-list wrap">
+          <h2 class="in-progress-empty-header hidden">No animes in progress</h2>
         </ul>
       </div>
       <div class="navbar">
@@ -108,6 +122,9 @@
                   </li>
                   <li class="padding-lr-1">
                     <a href="#"><i class="fas fa-list-alt"></i></a>
+                  </li>
+                  <li class="padding-lr-1">
+                    <a href="#"><i class="fas fa-eye"></i></a>
                   </li>
                 </ul>
               </nav>
