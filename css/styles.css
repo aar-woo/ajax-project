@@ -73,6 +73,10 @@ header {
   justify-content: center;
 }
 
+.justify-end {
+  justify-content: end;
+}
+
 .network-error-header,
 .no-results-header,
 .empty-header {
@@ -225,9 +229,11 @@ header {
 }
 
 .btn {
+  font-size: 0.7rem;
   color: white;
   background-color: #26a69a;
-  padding: 0.2rem 0.9rem;
+  padding: 0 0.5rem;
+  margin-left: 0.4rem;
   border: none;
   border-radius: 3px;
   box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.5);
@@ -318,6 +324,11 @@ header {
 
   .search-btn {
     padding: 0 1.2rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.2rem 1.1rem;
   }
 
   .search-heading {

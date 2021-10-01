@@ -41,7 +41,16 @@ function createResult(animeObj) {
   } else if (data.view === 'watch-list') {
     $btn.className = 'btn remove-btn';
     $btn.textContent = 'REMOVE';
+    var $watchBtn = document.createElement('button');
+    $watchBtn.className = 'btn watch-btn';
+    $watchBtn.textContent = 'WATCH';
   }
+
+  var $priorityCol = document.createElement('div');
+  $priorityCol.className = 'column-half';
+
+  var $btnCol = document.createElement('div');
+  $btnCol.className = 'column-half flex justify-end';
 
   var $priorityDiv = document.createElement('div');
   $priorityDiv.className = 'flex align-items-center';
@@ -95,7 +104,8 @@ function createResult(animeObj) {
   $textCard.appendChild($synopsis);
   $li.appendChild($divBtnrow);
   $divBtnrow.appendChild($priorityDiv);
-
+  $divBtnrow.appendChild($priorityCol);
+  $priorityCol.appendChild($priorityDiv);
   $priorityDiv.appendChild($priorityHeader);
   $priorityDiv.appendChild($arrowsDiv);
   $arrowsDiv.appendChild($upArrow);
@@ -103,7 +113,12 @@ function createResult(animeObj) {
   $arrowsDiv.appendChild($upArrow3);
   $arrowsDiv.appendChild($upArrow4);
   $arrowsDiv.appendChild($upArrow5);
-  $divBtnrow.appendChild($btn);
+  $divBtnrow.appendChild($btnCol);
+
+  if (data.view === 'watch-list') {
+    $btnCol.appendChild($watchBtn);
+  }
+  $btnCol.appendChild($btn);
 
   return $li;
 }
