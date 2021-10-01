@@ -3,6 +3,7 @@ var data = {
   view: 'search-page',
   watchList: [],
   searchList: [],
+  inProgressList: [],
   search: ''
 };
 
