@@ -243,7 +243,7 @@ function addResult(event) {
   renderWatchList();
 }
 
-window.addEventListener('DOMContentLoaded', onDomLoad);
+// window.addEventListener('DOMContentLoaded', onDomLoad);
 
 // function onDomLoad(event) {
 //   switchViews(data.view);
