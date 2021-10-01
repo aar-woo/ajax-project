@@ -212,6 +212,10 @@ function clearResults() {
   for (var j = 0; j < currWatchResults.length; j++) {
     currWatchResults[j].remove();
   }
+  var currInProgressResults = document.querySelectorAll('.in-progress-list li');
+  for (var k = 0; k < currInProgressResults.length; k++) {
+    currInProgressResults[k].remove();
+  }
 }
 
 var $searchIcon = document.querySelector('.navbar .fa-search');
@@ -240,7 +244,8 @@ function addResult(event) {
       data.watchList.push(data.searchList[i]);
     }
   }
-  renderWatchList();
+  // renderWatchList();
+  renderAnimeList(event);
 }
 
 // window.addEventListener('DOMContentLoaded', onDomLoad);
@@ -262,27 +267,74 @@ var $watchListIconTop = document.querySelector('.navbar-top .fa-list-alt');
 var $watchList = document.querySelector('.watch-list');
 var $emptyHeader = document.querySelector('.empty-header');
 
-$watchListIcon.addEventListener('click', renderWatchList);
-$watchListIconTop.addEventListener('click', renderWatchList);
+var $inProgressList = document.querySelector('.in-progress-list');
+var $inProgressEmptyHeader = document.querySelector('.in-progress-empty-header');
 
-function renderWatchList(event) {
+// $watchListIcon.addEventListener('click', renderWatchList);
+// $watchListIconTop.addEventListener('click', renderWatchList);
+
+// function renderWatchList(event) {
+//   clearResults();
+//   switchViews('watch-list');
+
+//   for (var i = 0; i < data.watchList.length; i++) {
+//     if (data.watchList[i].priority === null) {
+//       $watchList.prepend(createResult(data.watchList[i]));
+//     }
+//   }
+//   for (var priorityRank = 0; priorityRank <= 4; priorityRank++) {
+//     for (var watchListIndex = 0; watchListIndex < data.watchList.length; watchListIndex++) {
+//       if (data.watchList[watchListIndex].priority === priorityRank) {
+//         $watchList.prepend(createResult(data.watchList[watchListIndex]));
+//       }
+//     }
+//   }
+//   if (data.watchList.length === 0) {
+//     $emptyHeader.className = 'empty-header';
+//   }
+// }
+
+var $inProgressIcon = document.querySelector('.navbar .fa-eye');
+var $inProgressIconTop = document.querySelector('.navbar-top .fa-eye');
+
+$watchListIcon.addEventListener('click', renderAnimeList);
+$watchListIconTop.addEventListener('click', renderAnimeList);
+$inProgressIcon.addEventListener('click', renderAnimeList);
+$inProgressIconTop.addEventListener('click', renderAnimeList);
+
+function renderAnimeList(event) {
   clearResults();
-  switchViews('watch-list');
+  var dataList; // data.(list loop through), watchList or inProgressList
+  var $domList; // dom tree ul element to append items to
 
-  for (var i = 0; i < data.watchList.length; i++) {
-    if (data.watchList[i].priority === null) {
-      $watchList.prepend(createResult(data.watchList[i]));
+  if (event.target.matches('.fa-list-alt') || event.target.matches('.add-btn')) {
+    switchViews('watch-list');
+    dataList = data.watchList;
+    $domList = $watchList;
+  } else if (event.target.matches('.fa-eye') || (event.target.matches('.fa-arrow-alt-circle-up'))) {
+    switchViews('in-progress-list');
+    dataList = data.inProgressList;
+    $domList = $inProgressList;
+  }
+
+  for (var i = 0; i < dataList.length; i++) {
+    if (dataList[i].priority === null) {
+      $domList.prepend(createResult(dataList[i]));
     }
   }
   for (var priorityRank = 0; priorityRank <= 4; priorityRank++) {
-    for (var watchListIndex = 0; watchListIndex < data.watchList.length; watchListIndex++) {
-      if (data.watchList[watchListIndex].priority === priorityRank) {
-        $watchList.prepend(createResult(data.watchList[watchListIndex]));
+    for (var dataListIndex = 0; dataListIndex < dataList.length; dataListIndex++) {
+      if (dataList[dataListIndex].priority === priorityRank) {
+        $domList.prepend(createResult(dataList[dataListIndex]));
       }
     }
   }
-  if (data.watchList.length === 0) {
-    $emptyHeader.className = 'empty-header';
+  if (dataList.length === 0) {
+    if (data.view === 'watch-list') {
+      $emptyHeader.className = 'empty-header';
+    } else if (data.view === 'in-progress-list') {
+      $inProgressEmptyHeader.className = 'in-progress-empty-header';
+    }
   }
 }
 
@@ -306,12 +358,12 @@ function watchListOptions(event) {
   if (data.watchList.length === 0) {
     $emptyHeader.className = 'empty-header';
   }
-
 }
 
 var $resultList = document.querySelector('.result-list');
 $resultList.addEventListener('click', setPriority);
 $watchList.addEventListener('click', adjustPriority);
+$inProgressList.addEventListener('click', adjustPriority);
 
 function setPriority(event) {
   if (event.target.tagName !== 'I') {
@@ -329,6 +381,8 @@ function setPriority(event) {
     list = 'watchList';
   } else if (data.view === 'search-results') {
     list = 'searchList';
+  } else if (data.view === 'in-progress-list') {
+    list = 'inProgressList';
   }
 
   for (var i = 0; i < data[list].length; i++) {
@@ -353,5 +407,5 @@ function adjustPriority(event) {
     return;
   }
   setPriority(event);
-  renderWatchList();
+  renderAnimeList(event);
 }
