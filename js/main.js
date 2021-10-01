@@ -32,7 +32,7 @@ function createResult(animeObj) {
   $synopsis.textContent = animeObj.synopsis;
 
   var $divBtnrow = document.createElement('div');
-  $divBtnrow.className = 'row justify-between margin-top-half';
+  $divBtnrow.className = 'row margin-top-half';
 
   var $btn = document.createElement('button');
   if (data.view === 'search-results') {
@@ -41,9 +41,11 @@ function createResult(animeObj) {
   } else if (data.view === 'watch-list' || data.view === 'in-progress-list') {
     $btn.className = 'btn remove-btn';
     $btn.textContent = 'REMOVE';
-    var $watchBtn = document.createElement('button');
-    $watchBtn.className = 'btn watch-btn';
-    $watchBtn.textContent = 'WATCH';
+    if (data.view === 'watch-list') {
+      var $watchBtn = document.createElement('button');
+      $watchBtn.className = 'btn watch-btn';
+      $watchBtn.textContent = 'WATCH';
+    }
   }
 
   var $priorityCol = document.createElement('div');
@@ -103,7 +105,6 @@ function createResult(animeObj) {
   $textCard.appendChild($synopsisHeader);
   $textCard.appendChild($synopsis);
   $li.appendChild($divBtnrow);
-  $divBtnrow.appendChild($priorityDiv);
   $divBtnrow.appendChild($priorityCol);
   $priorityCol.appendChild($priorityDiv);
   $priorityDiv.appendChild($priorityHeader);
@@ -172,7 +173,6 @@ function onSearch(event) {
     $loadBar.className = 'lds-facebook hidden';
     $networkErrorHeader.className = 'network-error-header text-align-center';
   });
-
 }
 
 function resultsOnSearch(event) {
@@ -255,7 +255,7 @@ function onDomLoad(event) {
     for (var i = 0; i < data.searchList.length; i++) {
       $results.appendChild(createResult(data.searchList[i]));
     }
-  } else {
+  } else if (data.view === 'watch-list' || data.view === 'in-progress-list') {
     renderAnimeList(data.view);
   }
 }

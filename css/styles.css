@@ -75,7 +75,7 @@ header {
 }
 
 .justify-end {
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .in-progress-empty-header,
