@@ -244,23 +244,22 @@ function addResult(event) {
       data.watchList.push(data.searchList[i]);
     }
   }
-  // renderWatchList();
   renderAnimeList(event);
 }
 
-// window.addEventListener('DOMContentLoaded', onDomLoad);
+window.addEventListener('DOMContentLoaded', onDomLoad);
 
-// function onDomLoad(event) {
-//   switchViews(data.view);
-//   if (data.view === 'search-results') {
-//     $searchBarResults.value = data.search;
-//     for (var i = 0; i < data.searchList.length; i++) {
-//       $results.appendChild(createResult(data.searchList[i]));
-//     }
-//   } else if (data.view === 'watch-list') {
-//     renderWatchList();
-//   }
-// }
+function onDomLoad(event) {
+  switchViews(data.view);
+  if (data.view === 'search-results') {
+    $searchBarResults.value = data.search;
+    for (var i = 0; i < data.searchList.length; i++) {
+      $results.appendChild(createResult(data.searchList[i]));
+    }
+  } else {
+    renderAnimeList(data.view);
+  }
+}
 
 var $watchListIcon = document.querySelector('.navbar .fa-list-alt');
 var $watchListIconTop = document.querySelector('.navbar-top .fa-list-alt');
@@ -297,21 +296,71 @@ var $inProgressEmptyHeader = document.querySelector('.in-progress-empty-header')
 var $inProgressIcon = document.querySelector('.navbar .fa-eye');
 var $inProgressIconTop = document.querySelector('.navbar-top .fa-eye');
 
-$watchListIcon.addEventListener('click', renderAnimeList);
-$watchListIconTop.addEventListener('click', renderAnimeList);
-$inProgressIcon.addEventListener('click', renderAnimeList);
-$inProgressIconTop.addEventListener('click', renderAnimeList);
+$watchListIcon.addEventListener('click', renderWatchList);
+$watchListIconTop.addEventListener('click', renderWatchList);
+$inProgressIcon.addEventListener('click', renderInProgressList);
+$inProgressIconTop.addEventListener('click', renderInProgressList);
 
-function renderAnimeList(event) {
+// function renderAnimeList(event) {
+//   clearResults();
+//   var dataList;
+//   var $domList;
+
+//   if (event.target.matches('.fa-list-alt') || event.target.matches('.add-btn')) {
+//     switchViews('watch-list');
+//     dataList = data.watchList;
+//     $domList = $watchList;
+//   } else if (event.target.matches('.fa-eye') || (event.target.matches('.fa-arrow-alt-circle-up'))) {
+//     switchViews('in-progress-list');
+//     dataList = data.inProgressList;
+//     $domList = $inProgressList;
+//   }
+
+//   for (var i = 0; i < dataList.length; i++) {
+//     if (dataList[i].priority === null) {
+//       $domList.prepend(createResult(dataList[i]));
+//     }
+//   }
+//   for (var priorityRank = 0; priorityRank <= 4; priorityRank++) {
+//     for (var dataListIndex = 0; dataListIndex < dataList.length; dataListIndex++) {
+//       if (dataList[dataListIndex].priority === priorityRank) {
+//         $domList.prepend(createResult(dataList[dataListIndex]));
+//       }
+//     }
+//   }
+//   if (dataList.length === 0) {
+//     if (data.view === 'watch-list') {
+//       $emptyHeader.className = 'empty-header';
+//     } else if (data.view === 'in-progress-list') {
+//       $inProgressEmptyHeader.className = 'in-progress-empty-header';
+//     }
+//   }
+// }
+
+function renderWatchList(event) {
+  if (!event.target.matches('.fa-list-alt') && !event.target.matches('.add-btn')) {
+    return;
+  }
+  renderAnimeList('watch-list');
+}
+
+function renderInProgressList(event) {
+  if (!event.target.matches('.fa-eye') && !event.target.matches('.fa-arrow-alt-circle-up')) {
+    return;
+  }
+  renderAnimeList('in-progress-list');
+}
+
+function renderAnimeList(view) {
   clearResults();
-  var dataList; // data.(list loop through), watchList or inProgressList
-  var $domList; // dom tree ul element to append items to
+  var dataList;
+  var $domList;
 
-  if (event.target.matches('.fa-list-alt') || event.target.matches('.add-btn')) {
+  if (view === 'watch-list') {
     switchViews('watch-list');
     dataList = data.watchList;
     $domList = $watchList;
-  } else if (event.target.matches('.fa-eye') || (event.target.matches('.fa-arrow-alt-circle-up'))) {
+  } else if (view === 'in-progress-list') {
     switchViews('in-progress-list');
     dataList = data.inProgressList;
     $domList = $inProgressList;
