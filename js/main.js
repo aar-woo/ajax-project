@@ -286,15 +286,37 @@ function renderWatchList(event) {
   }
 }
 
-$watchList.addEventListener('click', deleteResult);
+// $watchList.addEventListener('click', deleteResult);
 
-function deleteResult(event) {
+// function deleteResult(event) {
+//   if (event.target.tagName !== 'BUTTON') {
+//     return;
+//   }
+//   var resultSelected = event.target.closest('li');
+//   for (var i = 0; i < data.watchList.length; i++) {
+//     if (data.watchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+//       resultSelected.remove();
+//       data.watchList.splice(i, 1);
+//     }
+//   }
+//   if (data.watchList.length === 0) {
+//     $emptyHeader.className = 'empty-header';
+//   }
+// }
+
+$watchList.addEventListener('click', watchListOptions);
+
+function watchListOptions(event) {
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
+
   var resultSelected = event.target.closest('li');
   for (var i = 0; i < data.watchList.length; i++) {
     if (data.watchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+      if (event.target.matches('.watch-btn')) {
+        data.inProgressList.push(data.watchList[i]);
+      }
       resultSelected.remove();
       data.watchList.splice(i, 1);
     }
@@ -302,6 +324,7 @@ function deleteResult(event) {
   if (data.watchList.length === 0) {
     $emptyHeader.className = 'empty-header';
   }
+
 }
 
 var $resultList = document.querySelector('.result-list');
