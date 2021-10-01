@@ -274,42 +274,6 @@ $watchListIconTop.addEventListener('click', renderWatchList);
 $inProgressIcon.addEventListener('click', renderInProgressList);
 $inProgressIconTop.addEventListener('click', renderInProgressList);
 
-// function renderAnimeList(event) {
-//   clearResults();
-//   var dataList;
-//   var $domList;
-
-//   if (event.target.matches('.fa-list-alt') || event.target.matches('.add-btn')) {
-//     switchViews('watch-list');
-//     dataList = data.watchList;
-//     $domList = $watchList;
-//   } else if (event.target.matches('.fa-eye') || (event.target.matches('.fa-arrow-alt-circle-up'))) {
-//     switchViews('in-progress-list');
-//     dataList = data.inProgressList;
-//     $domList = $inProgressList;
-//   }
-
-//   for (var i = 0; i < dataList.length; i++) {
-//     if (dataList[i].priority === null) {
-//       $domList.prepend(createResult(dataList[i]));
-//     }
-//   }
-//   for (var priorityRank = 0; priorityRank <= 4; priorityRank++) {
-//     for (var dataListIndex = 0; dataListIndex < dataList.length; dataListIndex++) {
-//       if (dataList[dataListIndex].priority === priorityRank) {
-//         $domList.prepend(createResult(dataList[dataListIndex]));
-//       }
-//     }
-//   }
-//   if (dataList.length === 0) {
-//     if (data.view === 'watch-list') {
-//       $emptyHeader.className = 'empty-header';
-//     } else if (data.view === 'in-progress-list') {
-//       $inProgressEmptyHeader.className = 'in-progress-empty-header';
-//     }
-//   }
-// }
-
 function renderWatchList(event) {
   if (!event.target.matches('.fa-list-alt') && !event.target.matches('.add-btn')) {
     return;
@@ -362,26 +326,6 @@ function renderAnimeList(view) {
 
 $watchList.addEventListener('click', animeListOptions);
 $inProgressList.addEventListener('click', animeListOptions);
-
-// function watchListOptions(event) {
-//   if (event.target.tagName !== 'BUTTON') {
-//     return;
-//   }
-
-//   var resultSelected = event.target.closest('li');
-//   for (var i = 0; i < data.watchList.length; i++) {
-//     if (data.watchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
-//       if (event.target.matches('.watch-btn')) {
-//         data.inProgressList.push(data.watchList[i]);
-//       }
-//       resultSelected.remove();
-//       data.watchList.splice(i, 1);
-//     }
-//   }
-//   if (data.watchList.length === 0) {
-//     $emptyHeader.className = 'empty-header';
-//   }
-// }
 
 function animeListOptions(event) {
   if (event.target.tagName !== 'BUTTON') {

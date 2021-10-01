@@ -19,6 +19,7 @@ h5, {
 }
 
 a,
+i,
 button {
   cursor: pointer;
 }
@@ -148,6 +149,11 @@ header {
   width: 7.5rem;
 }
 
+.vector-div.in-progress-header {
+  width: 8rem;
+}
+
+.in-progress-header i,
 .watch-list-header i {
   font-size: large;
   padding-left: 0.4rem;
@@ -342,10 +348,12 @@ header {
     width: 12rem;
   }
 
+  .vector-div.in-progress-header,
   .vector-div.watch-list-header {
     width: 9rem;
   }
 
+  .in-progress-header i,
   .watch-list-header i {
     font-size: x-large;
   }
