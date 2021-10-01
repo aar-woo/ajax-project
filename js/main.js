@@ -244,7 +244,7 @@ function addResult(event) {
       data.watchList.push(data.searchList[i]);
     }
   }
-  renderAnimeList(event);
+  renderAnimeList('watch-list');
 }
 
 window.addEventListener('DOMContentLoaded', onDomLoad);
@@ -456,5 +456,5 @@ function adjustPriority(event) {
     return;
   }
   setPriority(event);
-  renderAnimeList(event);
+  renderAnimeList(data.view);
 }
