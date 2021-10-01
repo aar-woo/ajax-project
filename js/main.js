@@ -203,6 +203,7 @@ function clearResults() {
   $emptyHeader.className = 'empty-header hidden';
   $noResultsHeader.className = 'no-results-header hidden';
   $networkErrorHeader.className = 'network-error-header text-align-center hidden';
+  $inProgressEmptyHeader.className = 'in-progress-empty-header hidden';
   var currDomResults = document.querySelectorAll('.result-list li');
   for (var i = 0; i < currDomResults.length; i++) {
     currDomResults[i].remove();
@@ -348,7 +349,11 @@ function animeListOptions(event) {
     }
   }
   if (dataList.length === 0) {
-    $emptyHeader.className = 'empty-header';
+    if (data.view === 'watch-list') {
+      $emptyHeader.className = 'empty-header';
+    } else if (data.view === 'in-progress-list') {
+      $inProgressEmptyHeader.className = 'in-progress-empty-header';
+    }
   }
 }
 
