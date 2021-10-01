@@ -113,12 +113,13 @@ function createResult(animeObj) {
   $arrowsDiv.appendChild($upArrow3);
   $arrowsDiv.appendChild($upArrow4);
   $arrowsDiv.appendChild($upArrow5);
-  $divBtnrow.appendChild($btnCol);
-
-  if (data.view === 'watch-list') {
-    $btnCol.appendChild($watchBtn);
+  if (data.view !== 'in-progress-list') {
+    $divBtnrow.appendChild($btnCol);
+    if (data.view === 'watch-list') {
+      $btnCol.appendChild($watchBtn);
+    }
+    $btnCol.appendChild($btn);
   }
-  $btnCol.appendChild($btn);
 
   return $li;
 }
@@ -265,36 +266,10 @@ var $watchListIcon = document.querySelector('.navbar .fa-list-alt');
 var $watchListIconTop = document.querySelector('.navbar-top .fa-list-alt');
 var $watchList = document.querySelector('.watch-list');
 var $emptyHeader = document.querySelector('.empty-header');
-
 var $inProgressList = document.querySelector('.in-progress-list');
-var $inProgressEmptyHeader = document.querySelector('.in-progress-empty-header');
-
-// $watchListIcon.addEventListener('click', renderWatchList);
-// $watchListIconTop.addEventListener('click', renderWatchList);
-
-// function renderWatchList(event) {
-//   clearResults();
-//   switchViews('watch-list');
-
-//   for (var i = 0; i < data.watchList.length; i++) {
-//     if (data.watchList[i].priority === null) {
-//       $watchList.prepend(createResult(data.watchList[i]));
-//     }
-//   }
-//   for (var priorityRank = 0; priorityRank <= 4; priorityRank++) {
-//     for (var watchListIndex = 0; watchListIndex < data.watchList.length; watchListIndex++) {
-//       if (data.watchList[watchListIndex].priority === priorityRank) {
-//         $watchList.prepend(createResult(data.watchList[watchListIndex]));
-//       }
-//     }
-//   }
-//   if (data.watchList.length === 0) {
-//     $emptyHeader.className = 'empty-header';
-//   }
-// }
-
 var $inProgressIcon = document.querySelector('.navbar .fa-eye');
 var $inProgressIconTop = document.querySelector('.navbar-top .fa-eye');
+var $inProgressEmptyHeader = document.querySelector('.in-progress-empty-header');
 
 $watchListIcon.addEventListener('click', renderWatchList);
 $watchListIconTop.addEventListener('click', renderWatchList);
