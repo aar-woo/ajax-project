@@ -240,6 +240,7 @@ function addResult(event) {
     if (data.searchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
       if (data.searchList[i].priority === undefined) {
         data.searchList[i].priority = null;
+        data.searchList.progress = 0;
       }
       data.watchList.push(data.searchList[i]);
     }
