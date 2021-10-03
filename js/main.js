@@ -23,23 +23,69 @@ function createResult(animeObj) {
   $title.className = 'margin-0';
   $title.textContent = animeObj.title;
 
-  var $synopsisHeader = document.createElement('h5');
-  $synopsisHeader.className = 'margin-top-half';
-  $synopsisHeader.textContent = 'Synopsis:';
+  // var $synopsisHeader = document.createElement('h5');
+  // $synopsisHeader.className = 'margin-top-half';
+  // $synopsisHeader.textContent = 'Synopsis:';
 
-  var $synopsis = document.createElement('p');
-  $synopsis.className = 'margin-0';
-  $synopsis.textContent = animeObj.synopsis;
+  // var $synopsis = document.createElement('p');
+  // $synopsis.className = 'margin-0';
+  // $synopsis.textContent = animeObj.synopsis;
+
+  var $infoHeader = document.createElement('h5');
+  $infoHeader.className = 'margin-top-half';
+  if (data.view === 'in-progress-list') {
+    $infoHeader.textContent = 'Episodes:';
+    var $episodesRow = document.createElement('div');
+    $episodesRow.className = 'row width-100';
+    var $watchedCol = document.createElement('div');
+    $watchedCol.className = 'column-half flex wrap justify-center margin-top-half';
+    var $watchedHeader = document.createElement('h6');
+    $watchedHeader.className = 'number-header';
+    $watchedHeader.textContent = 'Watched';
+    var $watchedNumRow = document.createElement('div');
+    $watchedNumRow.className = 'row width-100 justify-center';
+    var $watchedNumCard = document.createElement('div');
+    $watchedNumCard.className = 'number-card flex justify-center align-items-center';
+    var $watchedNum = document.createElement('h3');
+    $watchedNum.className = 'margin-0';
+    $watchedNum.textContent = 0;
+    var $totalCol = document.createElement('div');
+    $totalCol.className = 'column-half flex wrap justify-center margin-top-half';
+    var $totalHeader = document.createElement('h6');
+    $totalHeader.className = 'number-header';
+    $totalHeader.textContent = 'Total';
+    var $totalNumRow = document.createElement('div');
+    $totalNumRow.className = 'row width-100 justify-center';
+    var $totalNumCard = document.createElement('div');
+    $totalNumCard.className = 'number-card flex justify-center align-items-center';
+    var $totalNum = document.createElement('h3');
+    $totalNum.className = 'margin-0';
+    $totalNum.textContent = animeObj.episodes;
+
+    var $progressBar = document.createElement('div');
+    $progressBar.className = 'progress-bar';
+    var $progressBarFill = document.createElement('div');
+    $progressBarFill.className = 'progress-bar-fill';
+    $progressBarFill.setAttribute('style', 'width:20%;'); // change to 0 after testing
+  } else {
+    $infoHeader.textContent = 'Synopsis:';
+    var $synopsis = document.createElement('p');
+    $synopsis.className = 'margin-0';
+    $synopsis.textContent = animeObj.synopsis;
+  }
 
   var $divBtnrow = document.createElement('div');
   $divBtnrow.className = 'row margin-top-half';
+  if (data.view === 'in-progress-list') {
+    $divBtnrow.className = 'row margin-top-half justify-between align-items-center';
+  }
 
   var $btn = document.createElement('button');
   if (data.view === 'search-results') {
     $btn.className = 'btn add-btn';
     $btn.textContent = 'ADD';
   } else if (data.view === 'watch-list' || data.view === 'in-progress-list') {
-    $btn.className = 'btn remove-btn';
+    $btn.className = 'btn remove-btn min-height-25';
     $btn.textContent = 'REMOVE';
     if (data.view === 'watch-list') {
       var $watchBtn = document.createElement('button');
@@ -102,23 +148,43 @@ function createResult(animeObj) {
   $divRow.appendChild($textCard);
   $textCard.appendChild($titleHeader);
   $textCard.appendChild($title);
-  $textCard.appendChild($synopsisHeader);
-  $textCard.appendChild($synopsis);
-  $li.appendChild($divBtnrow);
-  $divBtnrow.appendChild($priorityCol);
-  $priorityCol.appendChild($priorityDiv);
-  $priorityDiv.appendChild($priorityHeader);
-  $priorityDiv.appendChild($arrowsDiv);
-  $arrowsDiv.appendChild($upArrow);
-  $arrowsDiv.appendChild($upArrow2);
-  $arrowsDiv.appendChild($upArrow3);
-  $arrowsDiv.appendChild($upArrow4);
-  $arrowsDiv.appendChild($upArrow5);
-  $divBtnrow.appendChild($btnCol);
-  if (data.view === 'watch-list') {
-    $btnCol.appendChild($watchBtn);
+  $textCard.appendChild($infoHeader);
+  if (data.view === 'in-progress-list') {
+    $textCard.appendChild($episodesRow);
+    $episodesRow.appendChild($watchedCol);
+    $watchedCol.appendChild($watchedHeader);
+    $watchedCol.appendChild($watchedNumRow);
+    $watchedNumRow.appendChild($watchedNumCard);
+    $watchedNumCard.appendChild($watchedNum);
+    $episodesRow.appendChild($totalCol);
+    $totalCol.appendChild($totalHeader);
+    $totalCol.appendChild($totalNumRow);
+    $totalNumRow.appendChild($totalNumCard);
+    $totalNumCard.appendChild($totalNum);
+  } else {
+    $textCard.appendChild($synopsis);
   }
-  $btnCol.appendChild($btn);
+  $li.appendChild($divBtnrow);
+  if (data.view === 'in-progress-list') {
+    $divBtnrow.appendChild($progressBar);
+    $progressBar.appendChild($progressBarFill);
+    $divBtnrow.appendChild($btn);
+  } else {
+    $divBtnrow.appendChild($priorityCol);
+    $priorityCol.appendChild($priorityDiv);
+    $priorityDiv.appendChild($priorityHeader);
+    $priorityDiv.appendChild($arrowsDiv);
+    $arrowsDiv.appendChild($upArrow);
+    $arrowsDiv.appendChild($upArrow2);
+    $arrowsDiv.appendChild($upArrow3);
+    $arrowsDiv.appendChild($upArrow4);
+    $arrowsDiv.appendChild($upArrow5);
+    $divBtnrow.appendChild($btnCol);
+    if (data.view === 'watch-list') {
+      $btnCol.appendChild($watchBtn);
+    }
+    $btnCol.appendChild($btn);
+  }
 
   return $li;
 }

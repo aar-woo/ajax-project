@@ -330,6 +330,10 @@ header {
   border-radius: 20px;
 }
 
+.min-height-25 {
+  min-height: 25px;
+}
+
 .lds-facebook {
   margin-top: 9rem;
   display: inline-block;
