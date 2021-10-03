@@ -281,6 +281,7 @@ header {
 
 .ep-btn-div {
   width: 75%;
+  max-width: 9rem;
 }
 
 .ep-btn {
@@ -289,6 +290,11 @@ header {
   border: none;
   padding: 0;
   width: 100%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 1);
 }
 
 .dec-btn {
@@ -301,6 +307,20 @@ header {
   background-color: #17c173;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+
+.dec-btn:active {
+  transform: translateX(-2px);
+}
+
+.inc-btn:active {
+  transform: translateX(2px);
+}
+
+.progress-bar {
+  width: 40%;
+  height: 1rem;
+  background-color: grey;
 }
 
 .lds-facebook {
