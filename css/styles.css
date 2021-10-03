@@ -171,7 +171,6 @@ header {
   z-index: -1;
 }
 
-.text-card h6,
 .margin-0 {
   margin: 0;
 }
@@ -260,10 +259,48 @@ header {
 }
 
 .number-card {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 75%;
   border-radius: 20%;
   background-color: #4c5c69;
+}
+
+.number-card::after {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.number-header {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.width-50 {
+  width: 50%;
+}
+
+.ep-btn-div {
+  width: 75%;
+}
+
+.ep-btn {
+  font-size: 1rem;
+  color: white;
+  border: none;
+  padding: 0;
+  width: 100%;
+}
+
+.dec-btn {
+  background-color: #cd0200;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.inc-btn {
+  background-color: #17c173;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .lds-facebook {
@@ -318,12 +355,6 @@ header {
 
   .number-card {
     font-size: 2.5rem;
-    width: 7rem;
-    height: 7rem;
-  }
-
-  .text-card h6 {
-    margin: 1.5rem 0;
   }
 }
 
@@ -385,8 +416,8 @@ header {
     width: 100%;
   }
 
-  .number-card {
-    width: 7rem;
-    height: 7rem;
+  .number-header {
+    font-size: 1.2rem;
+    margin: 1rem 0;
   }
 }
