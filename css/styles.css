@@ -319,8 +319,15 @@ header {
 
 .progress-bar {
   width: 40%;
-  height: 1rem;
+  height: 0.8rem;
   background-color: grey;
+  border-radius: 20px;
+}
+
+.progress-bar-fill {
+  background-color: #45c172;
+  height: 00.8rem;
+  border-radius: 20px;
 }
 
 .lds-facebook {
@@ -439,5 +446,10 @@ header {
   .number-header {
     font-size: 1.2rem;
     margin: 1rem 0;
+  }
+
+  .progress-bar {
+    width: 62%;
+    max-width: 500px;
   }
 }
