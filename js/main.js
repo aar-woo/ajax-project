@@ -61,6 +61,18 @@ function createResult(animeObj) {
     var $totalNum = document.createElement('h3');
     $totalNum.className = 'margin-0';
     $totalNum.textContent = animeObj.episodes;
+    var $episodeBtnRow = document.createElement('div');
+    $episodeBtnRow.className = 'row width-100';
+    var $episodeBtnHalfDiv = document.createElement('div');
+    $episodeBtnHalfDiv.className = 'width-50 flex justify-center';
+    var $episodeBtnDiv = document.createElement('div');
+    $episodeBtnDiv.className = 'ep-btn-div flex margin-top-half justify-center';
+    var $decBtn = document.createElement('btn');
+    $decBtn.className = 'dec-btn ep-btn';
+    $decBtn.textContent = '-';
+    var $incBtn = document.createElement('btn');
+    $incBtn.className = 'inc-btn ep-btn';
+    $incBtn.textContent = '+';
 
     var $progressBar = document.createElement('div');
     $progressBar.className = 'progress-bar';
@@ -161,6 +173,11 @@ function createResult(animeObj) {
     $totalCol.appendChild($totalNumRow);
     $totalNumRow.appendChild($totalNumCard);
     $totalNumCard.appendChild($totalNum);
+    $textCard.appendChild($episodeBtnRow);
+    $episodeBtnRow.appendChild($episodeBtnHalfDiv);
+    $episodeBtnHalfDiv.appendChild($episodeBtnDiv);
+    $episodeBtnDiv.appendChild($decBtn);
+    $episodeBtnDiv.appendChild($incBtn);
   } else {
     $textCard.appendChild($synopsis);
   }
