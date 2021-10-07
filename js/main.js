@@ -48,7 +48,7 @@ function createResult(animeObj) {
     $watchedNumCard.className = 'number-card flex justify-center align-items-center';
     var $watchedNum = document.createElement('h3');
     $watchedNum.className = 'margin-0';
-    $watchedNum.textContent = 0;
+    $watchedNum.textContent = animeObj.progress;
     var $totalCol = document.createElement('div');
     $totalCol.className = 'column-half flex wrap justify-center margin-top-half';
     var $totalHeader = document.createElement('h6');
@@ -67,10 +67,10 @@ function createResult(animeObj) {
     $episodeBtnHalfDiv.className = 'width-50 flex justify-center';
     var $episodeBtnDiv = document.createElement('div');
     $episodeBtnDiv.className = 'ep-btn-div flex margin-top-half justify-center';
-    var $decBtn = document.createElement('btn');
+    var $decBtn = document.createElement('button');
     $decBtn.className = 'dec-btn ep-btn';
     $decBtn.textContent = '-';
-    var $incBtn = document.createElement('btn');
+    var $incBtn = document.createElement('button');
     $incBtn.className = 'inc-btn ep-btn';
     $incBtn.textContent = '+';
 
@@ -78,7 +78,7 @@ function createResult(animeObj) {
     $progressBar.className = 'progress-bar';
     var $progressBarFill = document.createElement('div');
     $progressBarFill.className = 'progress-bar-fill';
-    $progressBarFill.setAttribute('style', 'width:20%;'); // change to 0 after testing
+    $progressBarFill.setAttribute('style', 'width:0;'); // change to 0 after testing
   } else {
     $infoHeader.textContent = 'Synopsis:';
     var $synopsis = document.createElement('p');
@@ -323,7 +323,7 @@ function addResult(event) {
     if (data.searchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
       if (data.searchList[i].priority === undefined) {
         data.searchList[i].priority = null;
-        data.searchList.progress = 0;
+        data.searchList[i].progress = 0;
       }
       data.watchList.push(data.searchList[i]);
     }
@@ -427,9 +427,12 @@ function animeListOptions(event) {
     if (dataList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
       if (event.target.matches('.watch-btn')) {
         data.inProgressList.push(dataList[i]);
+        resultSelected.remove();
+        dataList.splice(i, 1);
+      } else if (event.target.matches('.remove-btn')) {
+        resultSelected.remove();
+        dataList.splice(i, 1);
       }
-      resultSelected.remove();
-      dataList.splice(i, 1);
     }
   }
   if (dataList.length === 0) {
@@ -489,4 +492,28 @@ function adjustPriority(event) {
   }
   setPriority(event);
   renderAnimeList(data.view);
+}
+
+$inProgressList.addEventListener('click', updateProgress);
+
+function updateProgress(event) {
+  if (!event.target.matches('.inc-btn') && !event.target.matches('.dec-btn')) {
+    return;
+  }
+  const resultSelected = event.target.closest('li');
+  const $watchedNum = resultSelected.querySelector('.number-card > h3');
+
+  let animeObj;
+  for (var i = 0; i < data.inProgressList.length; i++) {
+    if (data.inProgressList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+      animeObj = data.inProgressList[i];
+    }
+  }
+  if (event.target.matches('.inc-btn')) {
+    animeObj.progress++;
+    $watchedNum.textContent = animeObj.progress;
+  } else if (event.target.matches('.dec-btn')) {
+    animeObj.progress--;
+    $watchedNum.textContent = animeObj.progress;
+  }
 }
