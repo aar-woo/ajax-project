@@ -321,13 +321,13 @@ header {
   width: 40%;
   height: 0.8rem;
   background-color: grey;
-  border-radius: 20px;
+  border-radius: 15px;
 }
 
 .progress-bar-fill {
   background-color: #45c172;
   height: 00.8rem;
-  border-radius: 20px;
+  border-radius: 30px;
 }
 
 .min-height-25 {
