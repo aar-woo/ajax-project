@@ -78,7 +78,9 @@ function createResult(animeObj) {
     $progressBar.className = 'progress-bar';
     var $progressBarFill = document.createElement('div');
     $progressBarFill.className = 'progress-bar-fill';
-    $progressBarFill.setAttribute('style', 'width:0;'); // change to 0 after testing
+    var currProgress = animeObj.progress * (100 / animeObj.episodes);
+    var progressFill = `width:${currProgress}%`;
+    $progressBarFill.setAttribute('style', progressFill); // change to 0 after testing
   } else {
     $infoHeader.textContent = 'Synopsis:';
     var $synopsis = document.createElement('p');
@@ -321,9 +323,9 @@ function addResult(event) {
   var resultSelected = event.target.closest('li');
   for (var i = 0; i < data.searchList.length; i++) {
     if (data.searchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+      data.searchList[i].progress = 0;
       if (data.searchList[i].priority === undefined) {
         data.searchList[i].priority = null;
-        data.searchList[i].progress = 0;
       }
       data.watchList.push(data.searchList[i]);
     }
@@ -447,7 +449,7 @@ function animeListOptions(event) {
 var $resultList = document.querySelector('.result-list');
 $resultList.addEventListener('click', setPriority);
 $watchList.addEventListener('click', adjustPriority);
-$inProgressList.addEventListener('click', adjustPriority);
+// $inProgressList.addEventListener('click', adjustPriority);
 
 function setPriority(event) {
   if (event.target.tagName !== 'I') {
@@ -502,18 +504,37 @@ function updateProgress(event) {
   }
   const resultSelected = event.target.closest('li');
   const $watchedNum = resultSelected.querySelector('.number-card > h3');
-
+  const $progressFill = resultSelected.querySelector('.progress-bar-fill');
+  let currProgress = parseFloat($progressFill.style.width);
   let animeObj;
-  for (var i = 0; i < data.inProgressList.length; i++) {
+
+  for (let i = 0; i < data.inProgressList.length; i++) {
     if (data.inProgressList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
       animeObj = data.inProgressList[i];
     }
   }
+  const incrementVal = 100 / animeObj.episodes;
+  // console.log('increment va', incrementVal);
+
+  // console.log('current progress width', currProgress);
+
   if (event.target.matches('.inc-btn')) {
     animeObj.progress++;
-    $watchedNum.textContent = animeObj.progress;
+    currProgress += incrementVal;
+    if (animeObj.progress > animeObj.episodes) {
+      animeObj.progress = animeObj.episodes;
+      currProgress = 100;
+    }
   } else if (event.target.matches('.dec-btn')) {
     animeObj.progress--;
+    currProgress -= incrementVal;
+    if (animeObj.progress <= 0) {
+      animeObj.progress = 0;
+      currProgress = 0;
+    }
     $watchedNum.textContent = animeObj.progress;
   }
+  $watchedNum.textContent = animeObj.progress;
+  $progressFill.style.width = currProgress + '%';
+
 }
