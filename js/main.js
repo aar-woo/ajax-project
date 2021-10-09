@@ -31,60 +31,6 @@ function createResult(animeObj) {
 
   const $infoVector = document.createElement('div');
   $infoVector.className = 'vector-div info-vector flex align-items-center margin-top-1';
-  // if (data.view === 'in-progress-list') {
-  //   $infoHeader.textContent = 'Episodes:';
-  //   const $episodesRow = document.createElement('div');
-  //   $episodesRow.className = 'row width-100';
-  //   const $watchedCol = document.createElement('div');
-  //   $watchedCol.className = 'column-half flex wrap justify-center margin-top-half';
-  //   const $watchedHeader = document.createElement('h6');
-  //   $watchedHeader.className = 'number-header';
-  //   $watchedHeader.textContent = 'Watched';
-  //   const $watchedNumRow = document.createElement('div');
-  //   $watchedNumRow.className = 'row width-100 justify-center';
-  //   const $watchedNumCard = document.createElement('div');
-  //   $watchedNumCard.className = 'number-card flex justify-center align-items-center';
-  //   const $watchedNum = document.createElement('h3');
-  //   $watchedNum.className = 'margin-0';
-  //   $watchedNum.textContent = animeObj.progress;
-  //   const $totalCol = document.createElement('div');
-  //   $totalCol.className = 'column-half flex wrap justify-center margin-top-half';
-  //   const $totalHeader = document.createElement('h6');
-  //   $totalHeader.className = 'number-header';
-  //   $totalHeader.textContent = 'Total';
-  //   const $totalNumRow = document.createElement('div');
-  //   $totalNumRow.className = 'row width-100 justify-center';
-  //   const $totalNumCard = document.createElement('div');
-  //   $totalNumCard.className = 'number-card flex justify-center align-items-center';
-  //   const $totalNum = document.createElement('h3');
-  //   $totalNum.className = 'margin-0';
-  //   $totalNum.textContent = animeObj.episodes;
-  //   const $episodeBtnRow = document.createElement('div');
-  //   $episodeBtnRow.className = 'row width-100';
-  //   const $episodeBtnHalfDiv = document.createElement('div');
-  //   $episodeBtnHalfDiv.className = 'width-50 flex justify-center';
-  //   const $episodeBtnDiv = document.createElement('div');
-  //   $episodeBtnDiv.className = 'ep-btn-div flex margin-top-half justify-center';
-  //   const $decBtn = document.createElement('button');
-  //   $decBtn.className = 'dec-btn ep-btn';
-  //   $decBtn.textContent = '-';
-  //   const $incBtn = document.createElement('button');
-  //   $incBtn.className = 'inc-btn ep-btn';
-  //   $incBtn.textContent = '+';
-
-  //   const $progressBar = document.createElement('div');
-  //   $progressBar.className = 'progress-bar';
-  //   const $progressBarFill = document.createElement('div');
-  //   $progressBarFill.className = 'progress-bar-fill';
-  //   const currProgress = animeObj.progress * (100 / animeObj.episodes);
-  //   const progressFill = `width:${currProgress}%`;
-  //   $progressBarFill.setAttribute('style', progressFill);
-  // } else {
-  //   $infoHeader.textContent = 'Synopsis:';
-  //   const $synopsis = document.createElement('p');
-  //   $synopsis.className = 'margin-0';
-  //   $synopsis.textContent = animeObj.synopsis;
-  // }
 
   const $divBtnrow = document.createElement('div');
   $divBtnrow.className = 'row margin-top-half';
@@ -99,11 +45,6 @@ function createResult(animeObj) {
   } else if (data.view === 'watch-list' || data.view === 'in-progress-list') {
     $btn.className = 'btn remove-btn min-height-25';
     $btn.textContent = 'REMOVE';
-    // if (data.view === 'watch-list') {
-    //   const $watchBtn = document.createElement('button');
-    //   $watchBtn.className = 'btn watch-btn';
-    //   $watchBtn.textContent = 'WATCH';
-    // }
   }
 
   const $priorityCol = document.createElement('div');
@@ -160,11 +101,9 @@ function createResult(animeObj) {
   $divRow.appendChild($textCard);
   $textCard.appendChild($titleVector);
   $titleVector.appendChild($titleHeader);
-  // $textCard.appendChild($titleHeader);
   $textCard.appendChild($title);
   $textCard.appendChild($infoVector);
   $infoVector.appendChild($infoHeader);
-  // $textCard.appendChild($infoHeader);
   if (data.view === 'in-progress-list') {
     $infoHeader.textContent = 'Episodes:';
     const $episodesRow = document.createElement('div');
@@ -259,27 +198,6 @@ function createResult(animeObj) {
     $btnCol.appendChild($btn);
   }
   $li.appendChild($divBtnrow);
-  // if (data.view === 'in-progress-list') {
-  //   $divBtnrow.appendChild($progressBar);
-  //   $progressBar.appendChild($progressBarFill);
-  //   $divBtnrow.appendChild($btn);
-  // } else {
-  //   $divBtnrow.appendChild($priorityCol);
-  //   $priorityCol.appendChild($priorityDiv);
-  //   $priorityDiv.appendChild($priorityHeader);
-  //   $priorityDiv.appendChild($arrowsDiv);
-  //   $arrowsDiv.appendChild($upArrow);
-  //   $arrowsDiv.appendChild($upArrow2);
-  //   $arrowsDiv.appendChild($upArrow3);
-  //   $arrowsDiv.appendChild($upArrow4);
-  //   $arrowsDiv.appendChild($upArrow5);
-  //   $divBtnrow.appendChild($btnCol);
-  //   if (data.view === 'watch-list') {
-  //     $btnCol.appendChild($watchBtn);
-  //   }
-  //   $btnCol.appendChild($btn);
-  // }
-
   return $li;
 }
 
@@ -524,7 +442,6 @@ function animeListOptions(event) {
 const $resultList = document.querySelector('.result-list');
 $resultList.addEventListener('click', setPriority);
 $watchList.addEventListener('click', adjustPriority);
-// $inProgressList.addEventListener('click', adjustPriority);
 
 function setPriority(event) {
   if (event.target.tagName !== 'I') {
@@ -606,5 +523,4 @@ function updateProgress(event) {
   }
   $watchedNum.textContent = animeObj.progress;
   $progressFill.style.width = currProgress + '%';
-
 }
