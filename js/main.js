@@ -15,16 +15,22 @@ function createResult(animeObj) {
   const $textCard = document.createElement('div');
   $textCard.className = 'text-card';
 
-  const $titleHeader = document.createElement('h5');
-  $titleHeader.className = 'margin-0';
+  const $titleHeader = document.createElement('h6');
+  $titleHeader.className = 'margin-0 margin-left-half';
   $titleHeader.textContent = 'Title:';
 
   const $title = document.createElement('p');
-  $title.className = 'margin-0';
+  $title.className = 'margin-0 indent';
   $title.textContent = animeObj.title;
 
-  const $infoHeader = document.createElement('h5');
-  $infoHeader.className = 'margin-top-half';
+  const $titleVector = document.createElement('div');
+  $titleVector.className = 'vector-div title-vector flex align-items-center';
+
+  const $infoHeader = document.createElement('h6');
+  $infoHeader.className = 'margin-0';
+
+  const $infoVector = document.createElement('div');
+  $infoVector.className = 'vector-div info-vector flex align-items-center margin-top-1';
   // if (data.view === 'in-progress-list') {
   //   $infoHeader.textContent = 'Episodes:';
   //   const $episodesRow = document.createElement('div');
@@ -152,9 +158,13 @@ function createResult(animeObj) {
   $li.appendChild($divRow);
   $divRow.appendChild($img);
   $divRow.appendChild($textCard);
-  $textCard.appendChild($titleHeader);
+  $textCard.appendChild($titleVector);
+  $titleVector.appendChild($titleHeader);
+  // $textCard.appendChild($titleHeader);
   $textCard.appendChild($title);
-  $textCard.appendChild($infoHeader);
+  $textCard.appendChild($infoVector);
+  $infoVector.appendChild($infoHeader);
+  // $textCard.appendChild($infoHeader);
   if (data.view === 'in-progress-list') {
     $infoHeader.textContent = 'Episodes:';
     const $episodesRow = document.createElement('div');
@@ -226,7 +236,7 @@ function createResult(animeObj) {
   } else {
     $infoHeader.textContent = 'Synopsis:';
     const $synopsis = document.createElement('p');
-    $synopsis.className = 'margin-0';
+    $synopsis.className = 'margin-0 indent';
     $synopsis.textContent = animeObj.synopsis;
     $textCard.appendChild($synopsis);
 
