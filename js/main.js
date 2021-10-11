@@ -1,98 +1,97 @@
-var $results = document.querySelector('.result-list');
+const $results = document.querySelector('.result-list');
 
 function createResult(animeObj) {
-  var $li = document.createElement('li');
+  const $li = document.createElement('li');
   $li.className = 'anime-card align-items-center';
   $li.setAttribute('id', animeObj.mal_id);
 
-  var $divRow = document.createElement('div');
+  const $divRow = document.createElement('div');
   $divRow.className = 'row width-100';
 
-  var $img = document.createElement('img');
+  const $img = document.createElement('img');
   $img.setAttribute('src', animeObj.image_url);
   $img.className = 'img';
 
-  var $textCard = document.createElement('div');
+  const $textCard = document.createElement('div');
   $textCard.className = 'text-card';
 
-  var $titleHeader = document.createElement('h5');
-  $titleHeader.className = 'margin-0';
+  const $titleHeader = document.createElement('h6');
+  $titleHeader.className = 'margin-0 margin-left-half';
   $titleHeader.textContent = 'Title:';
 
-  var $title = document.createElement('p');
-  $title.className = 'margin-0';
+  const $title = document.createElement('p');
+  $title.className = 'margin-0 indent';
   $title.textContent = animeObj.title;
 
-  var $synopsisHeader = document.createElement('h5');
-  $synopsisHeader.className = 'margin-top-half';
-  $synopsisHeader.textContent = 'Synopsis:';
+  const $titleVector = document.createElement('div');
+  $titleVector.className = 'vector-div title-vector flex align-items-center';
 
-  var $synopsis = document.createElement('p');
-  $synopsis.className = 'margin-0';
-  $synopsis.textContent = animeObj.synopsis;
+  const $infoHeader = document.createElement('h6');
+  $infoHeader.className = 'margin-0';
 
-  var $divBtnrow = document.createElement('div');
+  const $infoVector = document.createElement('div');
+  $infoVector.className = 'vector-div info-vector flex align-items-center margin-top-1';
+
+  const $divBtnrow = document.createElement('div');
   $divBtnrow.className = 'row margin-top-half';
+  if (data.view === 'in-progress-list') {
+    $divBtnrow.className = 'row margin-top-half justify-between align-items-center';
+  }
 
-  var $btn = document.createElement('button');
+  const $btn = document.createElement('button');
   if (data.view === 'search-results') {
     $btn.className = 'btn add-btn';
     $btn.textContent = 'ADD';
   } else if (data.view === 'watch-list' || data.view === 'in-progress-list') {
-    $btn.className = 'btn remove-btn';
+    $btn.className = 'btn remove-btn min-height-25';
     $btn.textContent = 'REMOVE';
-    if (data.view === 'watch-list') {
-      var $watchBtn = document.createElement('button');
-      $watchBtn.className = 'btn watch-btn';
-      $watchBtn.textContent = 'WATCH';
-    }
   }
 
-  var $priorityCol = document.createElement('div');
+  const $priorityCol = document.createElement('div');
   $priorityCol.className = 'column-half';
 
-  var $btnCol = document.createElement('div');
+  const $btnCol = document.createElement('div');
   $btnCol.className = 'column-half flex justify-end';
 
-  var $priorityDiv = document.createElement('div');
+  const $priorityDiv = document.createElement('div');
   $priorityDiv.className = 'flex align-items-center';
 
-  var $priorityHeader = document.createElement('h3');
+  const $priorityHeader = document.createElement('h3');
   $priorityHeader.className = 'margin-0';
   $priorityHeader.textContent = 'Priority';
 
-  var $arrowsDiv = document.createElement('div');
+  const $arrowsDiv = document.createElement('div');
   $arrowsDiv.className = 'up-arrows flex padding-lr-third align-items-center';
 
-  var arrowsList = [];
+  const arrowsList = [];
 
-  var $upArrow = document.createElement('i');
+  const $upArrow = document.createElement('i');
   $upArrow.className = 'fas fa-arrow-alt-circle-up';
   $upArrow.setAttribute('id', 0);
   arrowsList.push($upArrow);
 
-  var $upArrow2 = document.createElement('i');
+  const $upArrow2 = document.createElement('i');
   $upArrow2.className = 'fas fa-arrow-alt-circle-up';
   $upArrow2.setAttribute('id', 1);
   arrowsList.push($upArrow2);
 
-  var $upArrow3 = document.createElement('i');
+  const $upArrow3 = document.createElement('i');
   $upArrow3.className = 'fas fa-arrow-alt-circle-up';
   $upArrow3.setAttribute('id', 2);
   arrowsList.push($upArrow3);
 
-  var $upArrow4 = document.createElement('i');
+  const $upArrow4 = document.createElement('i');
   $upArrow4.className = 'fas fa-arrow-alt-circle-up';
   $upArrow4.setAttribute('id', 3);
   arrowsList.push($upArrow4);
 
-  var $upArrow5 = document.createElement('i');
+  const $upArrow5 = document.createElement('i');
   $upArrow5.className = 'fas fa-arrow-alt-circle-up';
   $upArrow5.setAttribute('id', 4);
   arrowsList.push($upArrow5);
 
   if (animeObj.priority !== null) {
-    for (var arrowFillIndex = 0; arrowFillIndex <= animeObj.priority; arrowFillIndex++) {
+    for (let arrowFillIndex = 0; arrowFillIndex <= animeObj.priority; arrowFillIndex++) {
       arrowsList[arrowFillIndex].className = 'fill-arrow fas fa-arrow-alt-circle-up';
     }
   }
@@ -100,36 +99,115 @@ function createResult(animeObj) {
   $li.appendChild($divRow);
   $divRow.appendChild($img);
   $divRow.appendChild($textCard);
-  $textCard.appendChild($titleHeader);
+  $textCard.appendChild($titleVector);
+  $titleVector.appendChild($titleHeader);
   $textCard.appendChild($title);
-  $textCard.appendChild($synopsisHeader);
-  $textCard.appendChild($synopsis);
-  $li.appendChild($divBtnrow);
-  $divBtnrow.appendChild($priorityCol);
-  $priorityCol.appendChild($priorityDiv);
-  $priorityDiv.appendChild($priorityHeader);
-  $priorityDiv.appendChild($arrowsDiv);
-  $arrowsDiv.appendChild($upArrow);
-  $arrowsDiv.appendChild($upArrow2);
-  $arrowsDiv.appendChild($upArrow3);
-  $arrowsDiv.appendChild($upArrow4);
-  $arrowsDiv.appendChild($upArrow5);
-  $divBtnrow.appendChild($btnCol);
-  if (data.view === 'watch-list') {
-    $btnCol.appendChild($watchBtn);
-  }
-  $btnCol.appendChild($btn);
+  $textCard.appendChild($infoVector);
+  $infoVector.appendChild($infoHeader);
+  if (data.view === 'in-progress-list') {
+    $infoHeader.textContent = 'Episodes:';
+    const $episodesRow = document.createElement('div');
+    $episodesRow.className = 'row width-100';
+    const $watchedCol = document.createElement('div');
+    $watchedCol.className = 'column-half flex wrap justify-center margin-top-half';
+    const $watchedHeader = document.createElement('h6');
+    $watchedHeader.className = 'number-header';
+    $watchedHeader.textContent = 'Watched';
+    const $watchedNumRow = document.createElement('div');
+    $watchedNumRow.className = 'row width-100 justify-center';
+    const $watchedNumCard = document.createElement('div');
+    $watchedNumCard.className = 'number-card flex justify-center align-items-center';
+    const $watchedNum = document.createElement('h3');
+    $watchedNum.className = 'margin-0';
+    $watchedNum.textContent = animeObj.progress;
+    const $totalCol = document.createElement('div');
+    $totalCol.className = 'column-half flex wrap justify-center margin-top-half';
+    const $totalHeader = document.createElement('h6');
+    $totalHeader.className = 'number-header';
+    $totalHeader.textContent = 'Total';
+    const $totalNumRow = document.createElement('div');
+    $totalNumRow.className = 'row width-100 justify-center';
+    const $totalNumCard = document.createElement('div');
+    $totalNumCard.className = 'number-card flex justify-center align-items-center';
+    const $totalNum = document.createElement('h3');
+    $totalNum.className = 'margin-0';
+    $totalNum.textContent = animeObj.episodes;
+    const $episodeBtnRow = document.createElement('div');
+    $episodeBtnRow.className = 'row width-100';
+    const $episodeBtnHalfDiv = document.createElement('div');
+    $episodeBtnHalfDiv.className = 'width-50 flex justify-center';
+    const $episodeBtnDiv = document.createElement('div');
+    $episodeBtnDiv.className = 'ep-btn-div flex margin-top-half justify-center';
+    const $decBtn = document.createElement('button');
+    $decBtn.className = 'dec-btn ep-btn';
+    $decBtn.textContent = '-';
+    const $incBtn = document.createElement('button');
+    $incBtn.className = 'inc-btn ep-btn';
+    $incBtn.textContent = '+';
+    const $progressBar = document.createElement('div');
+    $progressBar.className = 'progress-bar';
+    const $progressBarFill = document.createElement('div');
+    $progressBarFill.className = 'progress-bar-fill';
+    const currProgress = animeObj.progress * (100 / animeObj.episodes);
+    const progressFill = `width:${currProgress}%`;
 
+    $progressBarFill.setAttribute('style', progressFill);
+    $textCard.appendChild($episodesRow);
+    $episodesRow.appendChild($watchedCol);
+    $watchedCol.appendChild($watchedHeader);
+    $watchedCol.appendChild($watchedNumRow);
+    $watchedNumRow.appendChild($watchedNumCard);
+    $watchedNumCard.appendChild($watchedNum);
+    $episodesRow.appendChild($totalCol);
+    $totalCol.appendChild($totalHeader);
+    $totalCol.appendChild($totalNumRow);
+    $totalNumRow.appendChild($totalNumCard);
+    $totalNumCard.appendChild($totalNum);
+    $textCard.appendChild($episodeBtnRow);
+    $episodeBtnRow.appendChild($episodeBtnHalfDiv);
+    $episodeBtnHalfDiv.appendChild($episodeBtnDiv);
+    $episodeBtnDiv.appendChild($decBtn);
+    $episodeBtnDiv.appendChild($incBtn);
+
+    $divBtnrow.appendChild($progressBar);
+    $progressBar.appendChild($progressBarFill);
+    $divBtnrow.appendChild($btn);
+  } else {
+    $infoHeader.textContent = 'Synopsis:';
+    const $synopsis = document.createElement('p');
+    $synopsis.className = 'margin-0 indent';
+    $synopsis.textContent = animeObj.synopsis;
+    $textCard.appendChild($synopsis);
+
+    $divBtnrow.appendChild($priorityCol);
+    $priorityCol.appendChild($priorityDiv);
+    $priorityDiv.appendChild($priorityHeader);
+    $priorityDiv.appendChild($arrowsDiv);
+    $arrowsDiv.appendChild($upArrow);
+    $arrowsDiv.appendChild($upArrow2);
+    $arrowsDiv.appendChild($upArrow3);
+    $arrowsDiv.appendChild($upArrow4);
+    $arrowsDiv.appendChild($upArrow5);
+    $divBtnrow.appendChild($btnCol);
+    if (data.view === 'watch-list') {
+      const $watchBtn = document.createElement('button');
+      $watchBtn.className = 'btn watch-btn';
+      $watchBtn.textContent = 'WATCH';
+      $btnCol.appendChild($watchBtn);
+    }
+    $btnCol.appendChild($btn);
+  }
+  $li.appendChild($divBtnrow);
   return $li;
 }
 
-var $searchBar = document.querySelector('.search-bar');
-var $searchBtn = document.querySelector('.search-btn');
-var $searchBarResults = document.querySelector('.search-bar.results');
-var $searchBtnResults = document.querySelector('.search-btn.results');
-var $loadBar = document.querySelector('.lds-facebook');
-var $noResultsHeader = document.querySelector('.no-results-header');
-var $networkErrorHeader = document.querySelector('.network-error-header');
+const $searchBar = document.querySelector('.search-bar');
+const $searchBtn = document.querySelector('.search-btn');
+const $searchBarResults = document.querySelector('.search-bar.results');
+const $searchBtnResults = document.querySelector('.search-btn.results');
+const $loadBar = document.querySelector('.lds-facebook');
+const $noResultsHeader = document.querySelector('.no-results-header');
+const $networkErrorHeader = document.querySelector('.network-error-header');
 
 $searchBtn.addEventListener('click', onSearch);
 $searchBtnResults.addEventListener('click', resultsOnSearch);
@@ -142,7 +220,7 @@ function onSearch(event) {
   }
   event.preventDefault();
   $loadBar.className = 'lds-facebook';
-  var searchBar;
+  let searchBar;
   if (data.view === 'search-page') {
     searchBar = $searchBar;
   } else {
@@ -150,7 +228,7 @@ function onSearch(event) {
   }
   data.search = searchBar.value;
 
-  var jikanReq = new XMLHttpRequest();
+  const jikanReq = new XMLHttpRequest();
   jikanReq.open('GET', 'https://api.jikan.moe/v3/search/anime?q=' + data.search);
   jikanReq.responseType = 'json';
   jikanReq.addEventListener('load', function () {
@@ -158,9 +236,9 @@ function onSearch(event) {
     if (jikanReq.status < 200 || jikanReq.status >= 300) {
       $noResultsHeader.className = 'no-results-header';
     }
-    var searchList = jikanReq.response.results;
-    for (var result = 0; result < 5; result++) {
-      var searchResult = createResult(searchList[result]);
+    const searchList = jikanReq.response.results;
+    for (let result = 0; result < 10; result++) {
+      const searchResult = createResult(searchList[result]);
       $results.appendChild(searchResult);
       data.searchList.push(searchList[result]);
     }
@@ -183,10 +261,10 @@ function resultsOnSearch(event) {
   onSearch(event);
 }
 
-var $views = document.querySelectorAll('.view');
+const $views = document.querySelectorAll('.view');
 
 function switchViews(view) {
-  for (var i = 0; i < $views.length; i++) {
+  for (let i = 0; i < $views.length; i++) {
     if ($views[i].getAttribute('data-view') === view) {
       $views[i].className = 'view';
       data.view = view;
@@ -204,22 +282,22 @@ function clearResults() {
   $noResultsHeader.className = 'no-results-header hidden';
   $networkErrorHeader.className = 'network-error-header text-align-center hidden';
   $inProgressEmptyHeader.className = 'in-progress-empty-header hidden';
-  var currDomResults = document.querySelectorAll('.result-list li');
-  for (var i = 0; i < currDomResults.length; i++) {
+  const currDomResults = document.querySelectorAll('.result-list li');
+  for (let i = 0; i < currDomResults.length; i++) {
     currDomResults[i].remove();
   }
-  var currWatchResults = document.querySelectorAll('.watch-list li');
-  for (var j = 0; j < currWatchResults.length; j++) {
+  const currWatchResults = document.querySelectorAll('.watch-list li');
+  for (let j = 0; j < currWatchResults.length; j++) {
     currWatchResults[j].remove();
   }
-  var currInProgressResults = document.querySelectorAll('.in-progress-list li');
-  for (var k = 0; k < currInProgressResults.length; k++) {
+  const currInProgressResults = document.querySelectorAll('.in-progress-list li');
+  for (let k = 0; k < currInProgressResults.length; k++) {
     currInProgressResults[k].remove();
   }
 }
 
-var $searchIcon = document.querySelector('.navbar .fa-search');
-var $searchIconTop = document.querySelector('.navbar-top .fa-search');
+const $searchIcon = document.querySelector('.navbar .fa-search');
+const $searchIconTop = document.querySelector('.navbar-top .fa-search');
 
 $searchIcon.addEventListener('click', searchIconClick);
 $searchIconTop.addEventListener('click', searchIconClick);
@@ -235,9 +313,10 @@ function addResult(event) {
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
-  var resultSelected = event.target.closest('li');
-  for (var i = 0; i < data.searchList.length; i++) {
+  const resultSelected = event.target.closest('li');
+  for (let i = 0; i < data.searchList.length; i++) {
     if (data.searchList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+      data.searchList[i].progress = 0;
       if (data.searchList[i].priority === undefined) {
         data.searchList[i].priority = null;
       }
@@ -253,7 +332,7 @@ function onDomLoad(event) {
   switchViews(data.view);
   if (data.view === 'search-results') {
     $searchBarResults.value = data.search;
-    for (var i = 0; i < data.searchList.length; i++) {
+    for (let i = 0; i < data.searchList.length; i++) {
       $results.appendChild(createResult(data.searchList[i]));
     }
   } else if (data.view === 'watch-list' || data.view === 'in-progress-list') {
@@ -261,14 +340,14 @@ function onDomLoad(event) {
   }
 }
 
-var $watchListIcon = document.querySelector('.navbar .fa-list-alt');
-var $watchListIconTop = document.querySelector('.navbar-top .fa-list-alt');
-var $watchList = document.querySelector('.watch-list');
-var $emptyHeader = document.querySelector('.empty-header');
-var $inProgressList = document.querySelector('.in-progress-list');
-var $inProgressIcon = document.querySelector('.navbar .fa-eye');
-var $inProgressIconTop = document.querySelector('.navbar-top .fa-eye');
-var $inProgressEmptyHeader = document.querySelector('.in-progress-empty-header');
+const $watchListIcon = document.querySelector('.navbar .fa-list-alt');
+const $watchListIconTop = document.querySelector('.navbar-top .fa-list-alt');
+const $watchList = document.querySelector('.watch-list');
+const $emptyHeader = document.querySelector('.empty-header');
+const $inProgressList = document.querySelector('.in-progress-list');
+const $inProgressIcon = document.querySelector('.navbar .fa-eye');
+const $inProgressIconTop = document.querySelector('.navbar-top .fa-eye');
+const $inProgressEmptyHeader = document.querySelector('.in-progress-empty-header');
 
 $watchListIcon.addEventListener('click', renderWatchList);
 $watchListIconTop.addEventListener('click', renderWatchList);
@@ -291,8 +370,8 @@ function renderInProgressList(event) {
 
 function renderAnimeList(view) {
   clearResults();
-  var dataList;
-  var $domList;
+  let dataList;
+  let $domList;
 
   if (view === 'watch-list') {
     switchViews('watch-list');
@@ -304,13 +383,13 @@ function renderAnimeList(view) {
     $domList = $inProgressList;
   }
 
-  for (var i = 0; i < dataList.length; i++) {
+  for (let i = 0; i < dataList.length; i++) {
     if (dataList[i].priority === null) {
       $domList.prepend(createResult(dataList[i]));
     }
   }
-  for (var priorityRank = 0; priorityRank <= 4; priorityRank++) {
-    for (var dataListIndex = 0; dataListIndex < dataList.length; dataListIndex++) {
+  for (let priorityRank = 0; priorityRank <= 4; priorityRank++) {
+    for (let dataListIndex = 0; dataListIndex < dataList.length; dataListIndex++) {
       if (dataList[dataListIndex].priority === priorityRank) {
         $domList.prepend(createResult(dataList[dataListIndex]));
       }
@@ -332,20 +411,23 @@ function animeListOptions(event) {
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
-  var dataList;
+  let dataList;
   if (data.view === 'watch-list') {
     dataList = data.watchList;
   } else if (data.view === 'in-progress-list') {
     dataList = data.inProgressList;
   }
-  var resultSelected = event.target.closest('li');
-  for (var i = 0; i < dataList.length; i++) {
+  const resultSelected = event.target.closest('li');
+  for (let i = 0; i < dataList.length; i++) {
     if (dataList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
       if (event.target.matches('.watch-btn')) {
         data.inProgressList.push(dataList[i]);
+        resultSelected.remove();
+        dataList.splice(i, 1);
+      } else if (event.target.matches('.remove-btn')) {
+        resultSelected.remove();
+        dataList.splice(i, 1);
       }
-      resultSelected.remove();
-      dataList.splice(i, 1);
     }
   }
   if (dataList.length === 0) {
@@ -357,22 +439,21 @@ function animeListOptions(event) {
   }
 }
 
-var $resultList = document.querySelector('.result-list');
+const $resultList = document.querySelector('.result-list');
 $resultList.addEventListener('click', setPriority);
 $watchList.addEventListener('click', adjustPriority);
-$inProgressList.addEventListener('click', adjustPriority);
 
 function setPriority(event) {
   if (event.target.tagName !== 'I') {
     return;
   }
 
-  var resultSelected = event.target.closest('li');
-  var animeObjIndex;
-  var priorityVal = parseInt(event.target.getAttribute('id'));
-  var $arrowsDivSelected = event.target.closest('.up-arrows');
-  var $arrowsList = $arrowsDivSelected.querySelectorAll('.fa-arrow-alt-circle-up');
-  var list;
+  const resultSelected = event.target.closest('li');
+  const priorityVal = parseInt(event.target.getAttribute('id'));
+  const $arrowsDivSelected = event.target.closest('.up-arrows');
+  const $arrowsList = $arrowsDivSelected.querySelectorAll('.fa-arrow-alt-circle-up');
+  let animeObjIndex;
+  let list;
 
   if (data.view === 'watch-list') {
     list = 'watchList';
@@ -382,18 +463,18 @@ function setPriority(event) {
     list = 'inProgressList';
   }
 
-  for (var i = 0; i < data[list].length; i++) {
+  for (let i = 0; i < data[list].length; i++) {
     if (data[list][i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
       animeObjIndex = i;
     }
   }
 
   if (data[list][animeObjIndex].priority > priorityVal) {
-    for (var arrowIndex = 0; arrowIndex < $arrowsList.length; arrowIndex++) {
+    for (let arrowIndex = 0; arrowIndex < $arrowsList.length; arrowIndex++) {
       $arrowsList[arrowIndex].className = 'fas fa-arrow-alt-circle-up';
     }
   }
-  for (var arrowFillIndex = 0; arrowFillIndex <= priorityVal; arrowFillIndex++) {
+  for (let arrowFillIndex = 0; arrowFillIndex <= priorityVal; arrowFillIndex++) {
     $arrowsList[arrowFillIndex].className = 'fill-arrow fas fa-arrow-alt-circle-up';
   }
   data[list][animeObjIndex].priority = priorityVal;
@@ -405,4 +486,41 @@ function adjustPriority(event) {
   }
   setPriority(event);
   renderAnimeList(data.view);
+}
+
+$inProgressList.addEventListener('click', updateProgress);
+
+function updateProgress(event) {
+  if (!event.target.matches('.inc-btn') && !event.target.matches('.dec-btn')) {
+    return;
+  }
+  const resultSelected = event.target.closest('li');
+  const $watchedNum = resultSelected.querySelector('.number-card > h3');
+  const $progressFill = resultSelected.querySelector('.progress-bar-fill');
+  let currProgress = parseFloat($progressFill.style.width);
+  let animeObj;
+  for (let i = 0; i < data.inProgressList.length; i++) {
+    if (data.inProgressList[i].mal_id === parseInt(resultSelected.getAttribute('id'))) {
+      animeObj = data.inProgressList[i];
+    }
+  }
+  const incrementVal = 100 / animeObj.episodes;
+  if (event.target.matches('.inc-btn')) {
+    animeObj.progress++;
+    currProgress += incrementVal;
+    if (animeObj.progress > animeObj.episodes) {
+      animeObj.progress = animeObj.episodes;
+      currProgress = 100;
+    }
+  } else if (event.target.matches('.dec-btn')) {
+    animeObj.progress--;
+    currProgress -= incrementVal;
+    if (animeObj.progress <= 0) {
+      animeObj.progress = 0;
+      currProgress = 0;
+    }
+    $watchedNum.textContent = animeObj.progress;
+  }
+  $watchedNum.textContent = animeObj.progress;
+  $progressFill.style.width = currProgress + '%';
 }

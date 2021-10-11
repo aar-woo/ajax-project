@@ -49,6 +49,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 1;
 }
 
 .margin-tb-4 {
@@ -142,7 +143,8 @@ header {
   height: 1.5rem;
   background-color: #4c5b69;
   position: relative;
-  z-index: -1;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
 }
 
 .vector-div.watch-list-header {
@@ -151,6 +153,19 @@ header {
 
 .vector-div.in-progress-header {
   width: 8rem;
+}
+
+.title-vector {
+  width: 3.5rem;
+}
+
+.info-vector {
+  width: 5rem;
+}
+
+.title-vector > h6,
+.info-vector > h6 {
+  margin-left: 0.4rem;
 }
 
 .in-progress-header i,
@@ -168,11 +183,15 @@ header {
   position: absolute;
   top: 0;
   left: 100%;
-  z-index: -1;
+  border-top-right-radius: 2px;
 }
 
 .margin-0 {
   margin: 0;
+}
+
+.indent {
+  margin-left: 5%;
 }
 
 .margin-top-1 {
@@ -211,7 +230,6 @@ header {
 
 .text-card > p {
   font-size: 0.7rem;
-  font-style: italic;
 }
 
 .margin-top-half {
@@ -256,6 +274,82 @@ header {
 
 .fill-arrow {
   color: #ffbf1e;
+}
+
+.number-card {
+  width: 75%;
+  border-radius: 20%;
+  background-color: #4c5c69;
+}
+
+.number-card::after {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.number-header {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.width-50 {
+  width: 50%;
+}
+
+.ep-btn-div {
+  width: 75%;
+  max-width: 9rem;
+}
+
+.ep-btn {
+  font-size: 1rem;
+  color: white;
+  border: none;
+  padding: 0;
+  width: 100%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 1);
+}
+
+.dec-btn {
+  background-color: #cd0200;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.inc-btn {
+  background-color: #17c173;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.dec-btn:active {
+  transform: translateX(-2px);
+}
+
+.inc-btn:active {
+  transform: translateX(2px);
+}
+
+.progress-bar {
+  width: 40%;
+  height: 0.8rem;
+  background-color: grey;
+  border-radius: 15px;
+}
+
+.progress-bar-fill {
+  background-color: #45c172;
+  height: 00.8rem;
+  border-radius: 30px;
+}
+
+.min-height-25 {
+  min-height: 25px;
 }
 
 .lds-facebook {
@@ -307,6 +401,14 @@ header {
   .search-bar {
     width: 100%;
   }
+
+  .number-card {
+    font-size: 2.5rem;
+  }
+
+  .text-card > p {
+    font-size: 1.2rem;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -348,6 +450,23 @@ header {
     width: 12rem;
   }
 
+  .vector-div.text-card-vector {
+    width: 6rem;
+  }
+
+  .title-vector > h6,
+  .info-vector > h6 {
+    font-size: 1.2rem;
+  }
+
+  .title-vector {
+    width: 4.5rem;
+  }
+
+  .info-vector {
+    width: 6.5rem;
+  }
+
   .vector-div.in-progress-header,
   .vector-div.watch-list-header {
     width: 9rem;
@@ -365,5 +484,15 @@ header {
 
   .text-card {
     width: 100%;
+  }
+
+  .number-header {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+  }
+
+  .progress-bar {
+    width: 62%;
+    max-width: 500px;
   }
 }
