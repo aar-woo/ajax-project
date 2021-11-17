@@ -325,6 +325,7 @@ header {
   background-color: #17c173;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  padding-bottom: 0.1rem;
 }
 
 .dec-btn:active {
