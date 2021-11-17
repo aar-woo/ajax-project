@@ -24,6 +24,15 @@ Features:
   * User can log their progress till completion of an anime
 
 
+
+https://user-images.githubusercontent.com/87718271/142298186-0fcbf8a7-6360-4d91-b61c-2f8fb38e3ab8.mov
+
+
+
+https://user-images.githubusercontent.com/87718271/142298896-30986853-60b5-4825-b0a4-7d649b4aba64.mov
+
+
+
 Stretch Features:
   * User can add an anime to their completed list
   * User can view their completed list
