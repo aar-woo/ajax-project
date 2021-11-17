@@ -192,7 +192,7 @@ function createResult(animeObj) {
     if (data.view === 'watch-list') {
       const $watchBtn = document.createElement('button');
       $watchBtn.className = 'btn watch-btn';
-      $watchBtn.textContent = 'WATCH';
+      $watchBtn.textContent = 'WATCHING';
       $btnCol.appendChild($watchBtn);
     }
     $btnCol.appendChild($btn);
