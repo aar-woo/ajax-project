@@ -11,7 +11,6 @@ Technologies:
   * CSS3
   * JavaScript
   * RESTful API
-  * FlexBox
 
 Features:
   * User can search for an anime
