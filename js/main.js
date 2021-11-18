@@ -362,7 +362,7 @@ function renderWatchList(event) {
 }
 
 function renderInProgressList(event) {
-  if (!event.target.matches('.fa-eye') && !event.target.matches('.fa-arrow-alt-circle-up')) {
+  if (!event.target.matches('.fa-eye') && !event.target.matches('.fa-arrow-alt-circle-up') && !event.target.matches('.watch-btn')) {
     return;
   }
   renderAnimeList('in-progress-list');
@@ -395,6 +395,7 @@ function renderAnimeList(view) {
       }
     }
   }
+
   if (dataList.length === 0) {
     if (data.view === 'watch-list') {
       $emptyHeader.className = 'empty-header';
@@ -424,17 +425,18 @@ function animeListOptions(event) {
         data.inProgressList.push(dataList[i]);
         resultSelected.remove();
         dataList.splice(i, 1);
+        renderAnimeList('in-progress-list');
       } else if (event.target.matches('.remove-btn')) {
         resultSelected.remove();
         dataList.splice(i, 1);
+        if (dataList.length === 0) {
+          if (data.view === 'watch-list') {
+            $emptyHeader.className = 'empty-header';
+          } else if (data.view === 'in-progress-list') {
+            $inProgressEmptyHeader.className = 'in-progress-empty-header';
+          }
+        }
       }
-    }
-  }
-  if (dataList.length === 0) {
-    if (data.view === 'watch-list') {
-      $emptyHeader.className = 'empty-header';
-    } else if (data.view === 'in-progress-list') {
-      $inProgressEmptyHeader.className = 'in-progress-empty-header';
     }
   }
 }
