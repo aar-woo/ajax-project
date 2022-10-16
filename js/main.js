@@ -10,6 +10,7 @@ function createResult(animeObj) {
 
   const $img = document.createElement('img');
   $img.setAttribute('src', animeObj.image_url);
+
   $img.className = 'img';
 
   const $textCard = document.createElement('div');
@@ -229,14 +230,17 @@ function onSearch(event) {
   data.search = searchBar.value;
 
   const jikanReq = new XMLHttpRequest();
-  jikanReq.open('GET', 'https://api.jikan.moe/v3/search/anime?q=' + data.search);
+  jikanReq.open('GET', 'https://api.jikan.moe/v4/anime?q=' + data.search);
+
   jikanReq.responseType = 'json';
   jikanReq.addEventListener('load', function () {
+    console.log('response', jikanReq.response.data);
+
     $loadBar.className = 'lds-facebook hidden';
     if (jikanReq.status < 200 || jikanReq.status >= 300) {
       $noResultsHeader.className = 'no-results-header';
     }
-    const searchList = jikanReq.response.results;
+    const searchList = jikanReq.response.data;
     for (let result = 0; result < 10; result++) {
       const searchResult = createResult(searchList[result]);
       $results.appendChild(searchResult);
