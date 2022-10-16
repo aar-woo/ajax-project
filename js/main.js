@@ -11,7 +11,6 @@ function createResult(animeObj) {
   const $img = document.createElement('img');
   $img.setAttribute('src', animeObj.images.jpg.image_url);
 
-
   $img.className = 'img';
 
   const $textCard = document.createElement('div');
@@ -177,7 +176,7 @@ function createResult(animeObj) {
   } else {
     $infoHeader.textContent = 'Synopsis:';
     const $synopsis = document.createElement('p');
-    $synopsis.className = 'margin-0 indent';
+    $synopsis.className = 'margin-0 indent synopsis';
     $synopsis.textContent = animeObj.synopsis;
     $textCard.appendChild($synopsis);
 

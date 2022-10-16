@@ -213,6 +213,21 @@ header {
   margin-bottom: 1.5rem;
 }
 
+.synopsis {
+  overflow-y: auto;
+  scrollbar-color: rgb(93,112,133);
+  height: 10rem;
+}
+
+.synopsis::-webkit-scrollbar {
+  background-color: rgb(91,104,120);
+  width: 0.75rem;
+}
+
+.synopsis::-webkit-scrollbar-thumb {
+  background: white;
+}
+
 .img {
   width: 40%;
   object-fit: cover;
