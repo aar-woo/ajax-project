@@ -177,7 +177,7 @@ function createResult(animeObj) {
     $infoHeader.textContent = 'Synopsis:';
     const $synopsis = document.createElement('p');
     $synopsis.className = 'margin-0 indent synopsis';
-    $synopsis.textContent = animeObj.synopsis;
+    animeObj.synopsis === null ? $synopsis.textContent = 'None' : $synopsis.textContent = animeObj.synopsis;
     $textCard.appendChild($synopsis);
 
     $divBtnrow.appendChild($priorityCol);
