@@ -234,10 +234,8 @@ function onSearch(event) {
 
   jikanReq.responseType = 'json';
   jikanReq.addEventListener('load', function () {
-    console.log('response', jikanReq.response.data);
-
     $loadBar.className = 'lds-facebook hidden';
-    if (jikanReq.status < 200 || jikanReq.status >= 300) {
+    if (jikanReq.status < 200 || jikanReq.status >= 300 || jikanReq.response.data.length === 0) {
       $noResultsHeader.className = 'no-results-header';
     }
     const searchList = jikanReq.response.data;
