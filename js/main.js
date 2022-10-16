@@ -9,7 +9,8 @@ function createResult(animeObj) {
   $divRow.className = 'row width-100';
 
   const $img = document.createElement('img');
-  $img.setAttribute('src', animeObj.image_url);
+  $img.setAttribute('src', animeObj.images.jpg.image_url);
+
 
   $img.className = 'img';
 
