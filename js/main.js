@@ -239,6 +239,7 @@ function onSearch(event) {
       $noResultsHeader.className = 'no-results-header';
     }
     const searchList = jikanReq.response.data;
+
     for (let result = 0; result < 10; result++) {
       const searchResult = createResult(searchList[result]);
       $results.appendChild(searchResult);
