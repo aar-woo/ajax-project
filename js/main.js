@@ -9,7 +9,8 @@ function createResult(animeObj) {
   $divRow.className = 'row width-100';
 
   const $img = document.createElement('img');
-  $img.setAttribute('src', animeObj.image_url);
+  $img.setAttribute('src', animeObj.images.jpg.image_url);
+
   $img.className = 'img';
 
   const $textCard = document.createElement('div');
@@ -175,8 +176,8 @@ function createResult(animeObj) {
   } else {
     $infoHeader.textContent = 'Synopsis:';
     const $synopsis = document.createElement('p');
-    $synopsis.className = 'margin-0 indent';
-    $synopsis.textContent = animeObj.synopsis;
+    $synopsis.className = 'margin-0 indent synopsis';
+    animeObj.synopsis === null ? $synopsis.textContent = 'None' : $synopsis.textContent = animeObj.synopsis;
     $textCard.appendChild($synopsis);
 
     $divBtnrow.appendChild($priorityCol);
@@ -229,14 +230,16 @@ function onSearch(event) {
   data.search = searchBar.value;
 
   const jikanReq = new XMLHttpRequest();
-  jikanReq.open('GET', 'https://api.jikan.moe/v3/search/anime?q=' + data.search);
+  jikanReq.open('GET', 'https://api.jikan.moe/v4/anime?q=' + data.search);
+
   jikanReq.responseType = 'json';
   jikanReq.addEventListener('load', function () {
     $loadBar.className = 'lds-facebook hidden';
-    if (jikanReq.status < 200 || jikanReq.status >= 300) {
+    if (jikanReq.status < 200 || jikanReq.status >= 300 || jikanReq.response.data.length === 0) {
       $noResultsHeader.className = 'no-results-header';
     }
-    const searchList = jikanReq.response.results;
+    const searchList = jikanReq.response.data;
+
     for (let result = 0; result < 10; result++) {
       const searchResult = createResult(searchList[result]);
       $results.appendChild(searchResult);
